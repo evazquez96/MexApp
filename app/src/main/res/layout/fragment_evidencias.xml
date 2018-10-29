@@ -1,0 +1,109 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fragment_blank"
+    tools:context="dream.logsys.com.logsysdream.BlankFragment"
+    android:layout_marginTop="50dp"
+    >
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ll1">
+
+            <Button
+                android:id="@+id/cameraButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Cámara" />
+
+
+            <Button
+                android:id="@+id/mediaButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Galería" />
+
+            <Button
+                android:id="@+id/scanButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Enviar ->" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_below="@id/ll1">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="152dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="No. de solicitud" />
+
+            <Spinner
+                android:id="@+id/solicitudesActivasSpinner"
+                android:layout_width="209dp"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="12dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/currentDate"
+                android:layout_width="158dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="date"
+                android:textAlignment="center"
+                android:textColor="@color/cardview_dark_background"
+                android:textStyle="bold"
+                android:visibility="visible" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/scannedImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+
+    </LinearLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</FrameLayout>

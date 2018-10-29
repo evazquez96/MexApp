@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/DateTimeDialog" android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    >
+    <logsys.dream.com.mx.utils.DateTimePicker
+        android:id="@+id/DateTimePicker" android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <LinearLayout android:id="@+id/ControlButtons__"
+        android:layout_width="fill_parent" android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/DateTimePicker"
+        android:layout_marginTop="-100dp"
+
+        >
+        <RadioGroup
+            android:id="@+id/radio_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+
+            android:orientation="horizontal"
+            >
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dormir Hasta"
+                android:id="@+id/radioButton"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:checked="false"
+                />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dormir en Tiempo"
+                android:id="@+id/radioButton2"
+                android:layout_below="@+id/radioButton"
+                android:layout_centerHorizontal="true"
+                android:checked="false"
+                />
+
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/ControlButtons"
+        android:layout_width="fill_parent" android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/ControlButtons__"
+
+
+        >
+        <!--
+        -->
+        <!--
+        android:padding="5dip"
+        -->
+
+        <Button android:id="@+id/SetDateTime"
+            android:text="@android:string/ok"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            />
+        <!--android:layout_marginLeft="40dp"-->
+<!--
+        <Button android:id="@+id/ResetDateTime"
+            android:text="Reset"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:visibility="invisible"
+            />
+-->
+        <Button android:id="@+id/CancelDialog"
+            android:text="@android:string/cancel"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content" />
+    </LinearLayout>
+</RelativeLayout>

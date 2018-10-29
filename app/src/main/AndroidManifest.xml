@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="dream.logsys.com.logsysdream">
+
+    <uses-sdk xmlns:tools="http://schemas.android.com/tools"
+        tools:overrideLibrary="com.wdullaer.materialdatetimepicker,android.support.v13" />
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <!--
+    <application
+        android:name="logsys.dream.com.mx.global.MyApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/logo_app"
+        android:supportsRtl="true"
+        android:theme="@style/MyTheme">
+        <activity
+            android:name="logsys.dream.com.mx.activities.LoginActivity"
+            android:label="@string/login_name"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="logsys.dream.com.mx.tmp.notificaciones.NotificationView"
+            android:label="Details of notification">
+
+
+        </activity>
+
+        <activity
+            android:name="logsys.dream.com.mx.activities.dream_dashboard"
+            android:label=""></activity>
+
+
+        <activity
+            android:name="logsys.dream.com.mx.activities.MainActivity"
+            android:label="@string/title_activity_main"></activity>
+    </application>
+    -->
+    <!-- android:theme="@style/AppTheme" -->
+    <!-- android:theme="@style/AppTheme" -->
+    <!-- android:theme="@style/AppTheme" -->
+    <!-- android:label="@string/app_name" -->
+    <!-- android:theme="@style/AppTheme" -->
+    <!-- setTheme(android.R.style.Theme_Holo); -->
+    <application
+        android:name="logsys.dream.com.mx.startup.FrescoApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/logo_app"
+        android:label="@string/app_name"
+        android:logo="@drawable/logo_app"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/logo_app" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+
+        <activity
+            android:name="logsys.dream.com.mx.activities.LoginActivity"
+            android:label="@string/login_name"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="logsys.dream.com.mx.activities.MainActivity"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <service android:name="logsys.dream.com.mx.notifications.NotificationService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <!--
+        <activity
+            android:name="logsys.dream.com.mx.activities.MainActivity"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar"
+            ></activity>
+        -->
+        <!--
+        <activity
+            android:name="logsys.dream.com.mx.activities.LoginActivity"
+            android:label="@string/login_name"
+            ></activity>
+        -->
+        <!--
+        <activity android:name=".PedidoActivity" />
+        <activity
+            android:name=".AgregarProductoActivity"
+            android:label="@string/title_activity_agregar_producto"
+            android:theme="@style/AppTheme.NoActionBar" />
+        -->
+        <activity android:name="logsys.dream.com.mx.activities.ConsultaViajeActivity" />
+        <activity
+            android:name=".bitacora2"
+            android:icon="@drawable/bitacora"
+            android:label="Bitacora"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:logo="@drawable/logo_app" />
+        <activity
+            android:name=".grafica"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".graficas2"
+            android:icon="@drawable/bitacora"
+            android:label="Detalles" />
+        <activity android:name=".condiciones">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".SecondPlain"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".lector" />
+
+        <receiver
+            android:name=".Monitor"
+            android:enabled="true"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".Documents"></activity>
+    </application>
+
+</manifest>

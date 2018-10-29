@@ -1,0 +1,78 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <!--
+    <style name="AppTheme" parent="Theme.AppCompat">
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+
+    </style>
+-->
+
+
+    <style name="AppTheme.ActionBarStyle" parent="android:style/Widget.Holo.Light.ActionBar">
+
+        <item name="android:background">@color/colorAccent</item>
+
+        <item name="android:logo">@drawable/amarillo</item>
+        <!--
+        <item name="android:titleTextStyle">@style/AppTheme.ActionBar.TitleTextStyle</item>
+-->
+        <!--
+        <item name="android:icon">@drawable/logo_mexamerik</item>
+        -->
+        <!--
+        <item name="android:indeterminateProgressStyle">@style/IndeterminateProgress</item>
+        -->
+
+    </style>
+
+
+    <!--
+    <style name="AppTheme" parent="Theme.AppCompat">
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+
+    </style>
+    -->
+
+
+    <style name="MyTheme" parent="Theme.AppCompat">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/gris</item>
+        <item name="android:icon">@drawable/amarillo</item>
+        <item name="android:typeface">serif</item>
+    </style>
+
+    <style name="MyListView" parent="@android:style/Widget.ListView">
+        <!--
+            <item name="android:listSelector">@drawable/ic_menu_home</item>
+            -->
+    </style>
+
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+</resources>

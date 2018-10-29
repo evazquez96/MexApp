@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:layout_marginLeft="8.0dp"
+    android:layout_marginRight="8.0dp"
+    android:layout_marginTop="4.0dp"
+    card_view:cardCornerRadius="2dp"
+    >
+
+
+
+
+
+    <com.facebook.drawee.view.SimpleDraweeView xmlns:fresco="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/image1"
+        android:layout_width="match_parent"
+        android:layout_height="0.0dp"
+        fresco:placeholderImage="@color/stay_color"
+        />
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        >
+
+        <ImageView
+            android:layout_width="367dp"
+            android:layout_height="512dp"
+            android:layout_centerInParent="true"
+            android:alpha="0.1"
+            android:scaleType="fitCenter"
+            android:src="@drawable/memamerik_big" />
+
+        <TextView
+            android:id="@+id/tvheader"
+            android:layout_width="324dp"
+            android:layout_height="44dp"
+            android:layout_alignParentLeft="true"
+
+            android:text="P &amp;G MARISCALA (CELAYA) - P&amp;G SMO (CUAUTITLAN)"
+            android:textAlignment="center"
+            android:textColor="@color/azul"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            card_view:layout_constraintLeft_toLeftOf="parent"
+            card_view:layout_constraintRight_toRightOf="parent"
+            card_view:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="0dp"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/tvheader1"
+            android:layout_width="368dp"
+            android:layout_height="28dp"
+            android:layout_alignParentLeft="true"
+
+            android:text="Solicitud: 5357098"
+            android:textAlignment="center"
+            android:textColor="@color/azul"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            card_view:layout_constraintLeft_toLeftOf="parent"
+            card_view:layout_constraintRight_toRightOf="parent"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/tvheader" />
+
+        <TextView
+            android:id="@+id/tvshipment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="8dp"
+            android:text="Shipment:"
+            android:textSize="12dp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/tvheader1" />
+
+        <TextView
+            android:id="@+id/tvshipment1"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Shipment"
+            android:textSize="12dp"
+            card_view:layout_constraintStart_toEndOf="@+id/tvshipment"
+            card_view:layout_constraintTop_toBottomOf="@+id/tvheader1" />
+
+        <TextView
+            android:id="@+id/tvcp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="8dp"
+            android:text="CP:"
+            android:textSize="12dp"
+            card_view:layout_constraintHorizontal_bias="0.0"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/tvshipment1" />
+
+        <TextView
+            android:id="@+id/tvcp1"
+            android:layout_width="230dp"
+            android:layout_height="21dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="C P "
+            android:textSize="12dp"
+            card_view:layout_constraintStart_toEndOf="@+id/tvshipment"
+            card_view:layout_constraintTop_toBottomOf="@+id/tvshipment1" />
+
+
+        <TextView
+            android:id="@+id/tvcliente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="8dp"
+            android:text="Cliente:"
+            android:textSize="12dp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/tvcp1" />
+
+        <TextView
+            android:id="@+id/tvcliente1"
+            android:layout_width="230dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="P&amp;G TR "
+            android:textSize="12dp"
+            android:textStyle="bold"
+            card_view:layout_constraintStart_toEndOf="@+id/tvshipment"
+            card_view:layout_constraintTop_toBottomOf="@+id/tvcp1" />
+
+        <TextView
+            android:id="@+id/tvorigen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="8dp"
+            android:text="Origen:"
+            android:textSize="12dp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/tvcliente1" />
+
+        <RelativeLayout
+            android:id="@+id/rl1"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            card_view:layout_constraintStart_toEndOf="@+id/tvshipment"
+            card_view:layout_constraintTop_toBottomOf="@+id/tvcliente1">
+
+            <TextView
+                android:id="@+id/tvorigentmp1"
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:text="P&amp;G MARISCALA (CELAYA) "
+                android:textSize="12dp"
+                card_view:layout_constraintHorizontal_bias="0.0" />
+
+            <ImageView
+                android:id="@+id/img_navegar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/maps" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tvdc"
+            android:layout_width="53dp"
+            android:layout_height="35dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="8dp"
+            android:text="Dirección Origen:"
+            android:textSize="12dp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/rl1" />
+
+        <TextView
+            android:id="@+id/tvdc1"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Avenida independencia sn"
+            android:textSize="12dp"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintHorizontal_bias="0.0"
+            card_view:layout_constraintStart_toEndOf="@+id/tvshipment"
+            card_view:layout_constraintTop_toBottomOf="@+id/rl1" />
+
+        <TextView
+            android:id="@+id/tvcitacarga"
+            android:layout_width="55dp"
+            android:layout_height="33dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="8dp"
+            android:text="Cita Carga:"
+            android:textSize="12dp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/tvdc1" />
+
+        <TextView
+            android:id="@+id/tvcitacarga1"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="22/FEB/18 10:00 A.M."
+            android:textSize="12dp"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintHorizontal_bias="0.014"
+            card_view:layout_constraintStart_toEndOf="@+id/tvcitacarga"
+            card_view:layout_constraintTop_toBottomOf="@+id/tvdc1" />
+
+        <TextView
+            android:id="@+id/tvdestino"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="8dp"
+            android:text="Destino:"
+            android:textSize="12dp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/tvcitacarga" />
+
+        <RelativeLayout
+            android:id="@+id/rl2"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            card_view:layout_constraintStart_toEndOf="@+id/tvdestino"
+            card_view:layout_constraintTop_toTopOf="@+id/tvdestino">
+
+            <TextView
+                android:id="@+id/tvorigentmp2"
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:text="Querétaro "
+                android:textSize="12dp"
+                card_view:layout_constraintHorizontal_bias="0.0" />
+
+            <ImageView
+                android:id="@+id/img_navegar1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/maps"
+                android:textSize="12dp" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tvdd"
+            android:layout_width="55dp"
+            android:layout_height="27dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="8dp"
+            android:text="Dirección Destino:"
+            android:textSize="12dp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/rl2" />
+
+        <TextView
+            android:id="@+id/tvdd1"
+            android:layout_width="236dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Avenida independencia sn Avenida independencia sn Avenida independencia sn Avenida independencia sn"
+            android:textSize="12dp"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintStart_toEndOf="@+id/tvdd"
+            card_view:layout_constraintTop_toBottomOf="@+id/rl2" />
+
+        <TextView
+            android:id="@+id/tvcitadescarga"
+            android:layout_width="55dp"
+            android:layout_height="27dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="8dp"
+            android:text="Cita Descarga:"
+            android:textSize="12dp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/tvdd1" />
+
+        <TextView
+            android:id="@+id/tvcitadescarga1"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textSize="12dp"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/tvdd1" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+
+
+</android.support.v7.widget.CardView>

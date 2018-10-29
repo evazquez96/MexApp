@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/mi_procesos">
+        <menu>
+            <item
+                android:id="@+id/mi_procesos_sueno"
+                android:title="@string/mi_procesos_sueno"
+                android:icon="@drawable/despertador"/>
+
+
+            <item
+                android:id="@+id/mi_procesos_eviencia"
+                android:icon="@drawable/escaner"
+                android:title="@string/mi_procesos_eviencia"
+                android:visible="false" />
+            <item
+                android:id="@+id/mi_procesos_notificaciones"
+                android:title="@string/mi_procesos_existencias"
+                android:icon="@drawable/ic_notifications_white_24dp"
+                android:visible="false"/>
+
+            <item
+                android:id="@+id/mi_procesos_viajes"
+                android:title="@string/mi_procesos_viajes"
+                android:icon="@drawable/menu_viaje"/>
+            <item
+                android:id="@+id/mi_procesos_bitacora"
+                android:icon="@drawable/bitacora"
+                android:title="NOM.87" />
+
+            <item
+                android:id="@+id/doc"
+                android:icon="@drawable/documents"
+                android:title="Informacion General" />
+
+        </menu>
+    </item>
+
+<!--
+    <item android:title="@string/mi_catalogos">
+        <menu>
+            <item
+                android:id="@+id/mi_catalogo_ciente"
+                android:title="@string/mi_catalogo_cliente" />
+            <item
+                android:id="@+id/mi_catalogo_precio"
+                android:title="@string/mi_catalogo_precio" />
+            <item
+                android:id="@+id/mi_catalogo_inflables"
+                android:title="@string/mi_catalogo_inflables" />
+        </menu>
+    </item>
+
+    <item android:title="@string/mi_seguimiento">
+        <menu>
+            <item
+                android:id="@+id/mi_seguimiento_semana"
+                android:icon="@drawable/ic_shopping_basket_black_24dp"
+                android:title="@string/mi_seguimiento_semana" />
+            <item
+                android:id="@+id/mi_seguimiento_todos"
+                android:icon="@drawable/ic_shopping_cart_black_24dp"
+                android:title="@string/mi_seguimiento_todos" />
+        </menu>
+    </item>
+    -->
+<!--
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_item1"
+            android:icon="@drawable/ic_local_offer_black_24dp"
+            android:title="@string/item_1" />
+        <item
+            android:id="@+id/nav_item2"
+            android:icon="@drawable/ic_smartphone_black_24dp"
+            android:title="@string/item_2" />
+        <item
+            android:id="@+id/nav_item3"
+            android:icon="@drawable/ic_wc_black_24dp"
+            android:title="@string/item_3" />
+        <item
+            android:id="@+id/nav_item4"
+            android:icon="@drawable/ic_local_dining_black_24dp"
+            android:title="@string/item_4" />
+        <item
+            android:id="@+id/nav_item5"
+            android:icon="@drawable/ic_book_black_24dp"
+            android:title="@string/item_5" />
+        <item
+            android:id="@+id/nav_item6"
+            android:icon="@drawable/ic_more_black_24dp"
+            android:title="@string/item_6" />
+    </group>
+
+
+
+    <item android:title="@string/help_support">
+        <menu>
+            <item
+                android:id="@+id/contact_us"
+                android:title="@string/contact_us" />
+            <item
+                android:id="@+id/terms_conditions"
+                android:title="@string/terms_conditions" />
+            <item
+                android:id="@+id/help_center"
+                android:title="@string/help_center" />
+        </menu>
+    </item>
+-->
+
+
+</menu>

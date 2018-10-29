@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".condiciones">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#800000"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Terminos y Condiciones del Servicio"
+            android:textColor="#ffffff"
+
+            android:textSize="18dp" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Aviso de Privacidad para usuarios de dream.logsys.com.logsysdream" />
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Comprometidos con la protección de tus datos personales, asumiendo la responsabilidad de su uso, manejo, almacenamiento y con el ﬁn de darte a conocer la información relativa a las características principales del tratamiento al que serán sometidos tus datos personales, emite el presente Aviso de Privacidad." />
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Datos Personales." />
+
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="La información recopilada por medio de la aplicación dream.logsys.com.logsysdream  (en adelante MexApp) es la siguiente:" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="°Número Telefónico: Obtenido desde la SIM del dispositivo." />
+
+            <TextView
+                android:id="@+id/textView32"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="°Ubicación del dispositivo" />
+
+            <TextView
+                android:id="@+id/textView222"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="°Finalidades del tratamiento de datos." />
+
+            <TextView
+                android:id="@+id/textView2233"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="°Autenticación dentro de la MexApp." />
+
+            <TextView
+                android:id="@+id/textView22"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="°Trazar ruta del dispositivo." />
+
+            <TextView
+                android:id="@+id/textView242"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="°Verificar, confirmar y validar tu identidad." />
+
+            <TextView
+                android:id="@+id/textView2242"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="°Cambios al Aviso de Privacidad." />
+
+            <TextView
+                android:id="@+id/textView25552"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:text="Las actualizaciones al presente Aviso de Privacidad, serán notificadas a través de la MexApp." />
+
+            <Switch
+                android:id="@+id/cambio"
+                android:layout_width="244dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Acepto terminos y condiciones" />
+
+            <Button
+                android:id="@+id/segu"
+                android:layout_width="210dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:background="@drawable/buttons"
+                android:text="Siguiente" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

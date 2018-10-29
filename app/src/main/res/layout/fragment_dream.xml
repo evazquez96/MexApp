@@ -1,0 +1,494 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="dream.logsys.com.logsysdream.DreamFragment"
+    android:background="@drawable/imagen_login"
+    android:layout_marginTop="55dp">
+
+    <ProgressBar
+        android:id="@+id/login_progress__"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/aaaaaa"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_marginRight="-15dp"
+        android:scaleType="center"
+
+        android:src="@drawable/imagen_login" />
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:src="@color/negro"
+        android:alpha=".70"/>
+
+    <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <ScrollView
+            android:id="@+id/a_dream_dashboard_tst"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <RelativeLayout
+                android:id="@+id/aaaa"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                >
+
+
+
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="0dp"
+                    android:text="Bienvenido"
+                    android:textSize="14dp"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:textColor="@color/blanco"
+                    />
+
+                <TextView
+                    android:id="@+id/dd_tv_nombre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textView4"
+                    android:layout_marginTop="0dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:text="Marco A. Contreras Juanico"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:textColor="@color/blanco"/>
+
+
+
+                <ImageView
+                    android:id="@+id/dd_ib_sueno"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:src="@drawable/alerta_rojo"
+                    android:layout_margin="5dp"
+
+                    android:layout_below="@+id/dd_tv_nombre"
+                    />
+                <!--android:onClick="btn_ini_fin_sueno"  -->
+
+
+                <!--
+                android:layout_height="wrap_content"
+                -->
+
+                <!--dd_ib_sueno-->
+                <!--android:textSize="24sp"-->
+                <TextView
+                    android:id="@+id/dd_tv_24horas"
+                    android:layout_width="wrap_content"
+                    android:text="Sueño a 24"
+                    android:textSize="23dp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_height="28dp"
+                    android:background="@color/colorAccent"
+                    android:layout_below="@+id/dd_ib_sueno"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="@color/negro"
+                    android:onClick="lbl24_clic"
+
+                    />
+                <!--android:textSize="25dp"-->
+                <TextView
+                    android:id="@+id/dd_tv_48horas"
+                    android:layout_width="wrap_content"
+
+                    android:textSize="23dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Sueño a 48"
+                    android:layout_height="28dp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:background="@color/colorAccent"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+
+                    android:textColor="@color/negro"
+                    android:onClick="lbl48_clic"
+                    android:layout_below="@+id/dd_tv_24horas"
+                    />
+
+                <TextView
+                    android:id="@+id/dd_tv_semana"
+                    android:layout_width="wrap_content"
+                    android:layout_below="@+id/dd_tv_48horas"
+                    android:layout_marginTop="5dp"
+                    android:text="Sueño ult Sem"
+                    android:textSize="23dp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_height="28dp"
+                    android:background="@color/colorAccent"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:textColor="@color/negro"
+                    android:onClick="lblsemana_clic"/>
+
+                <TextView
+                    android:id="@+id/dd_tv_ultsueno"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Ultimo Sueño - 8 Hrs"
+                    android:textSize="18dp"
+                    android:layout_height="28dp"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:layout_below="@+id/dd_tv_semana"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="@color/blanco"/>
+
+                <TextView
+                    android:id="@+id/dd_tv_ultsuenofecha"
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
+                    android:layout_below="@+id/dd_tv_ultsueno"
+                    android:layout_marginTop="0dp"
+                    android:text="05/Mar/2017"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:textColor="@color/blanco"/>
+
+                <RatingBar
+                    android:id="@+id/dd_rb_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/dd_tv_ultsuenofecha"
+                    android:layout_centerHorizontal="true"
+                    android:clickable="false"
+                    android:isIndicator="true"
+                    />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/dd_rb_rating"
+                    android:id="@+id/rl_test">
+
+
+                    <ImageView
+                        android:id="@+id/dd_b_iniciarsueno"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="0dp"
+                        android:onClick="btn_ini_fin_sueno"
+                        android:src="@drawable/stop" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="150dp" />
+                    <Chronometer
+                        android:id="@+id/chronometer2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_centerVertical="true"
+
+                        android:layout_marginRight="24dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginLeft="140dp"/>
+                    <!--
+                                <ImageView
+                                    android:id="@+id/dd_iv_logout"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="fill_parent"
+                                    android:layout_toRightOf="@id/dd_b_iniciarsueno"
+                                    android:src="@drawable/logout"
+                                    android:layout_marginTop="0dp"
+                                    android:onClick="btn_logout"
+                                    />
+                                    -->
+
+                    <!-- boton para visualizar registros pendientes
+                                <ImageButton
+                                    android:text="Pendientes"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/no_network_99_99"
+                                    android:id="@+id/ib_s_consultar"
+                                    android:layout_alignTop="@+id/ib_s_nuevo"
+                                    android:layout_toRightOf="@+id/dd_b_iniciarsueno"
+                                    android:layout_toEndOf="@+id/dd_b_iniciarsueno"
+                                    android:layout_marginLeft="37dp"
+                                    android:layout_marginStart="37dp"
+                                    android:onClick="btn_consultar_clic" />
+                    -->
+
+                </RelativeLayout>
+
+
+                <TextView
+                    android:id="@+id/dd_tv_tiempo_dormir"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/dd_tv_ultsueno"
+                    android:layout_marginTop="0dp"
+                    android:text="05/Mar/2017"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:textColor="@color/blanco"/>
+
+
+
+
+                <!--
+                            <TimePicker
+                                android:id="@+id/timePicker1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                -->
+            </RelativeLayout>
+
+
+
+
+
+        </ScrollView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+    <!--
+        <ImageButton
+            android:id="@+id/img_sem_sem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:longClickable="false"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/alerta_rojo"
+            android:layout_above="@+id/ratingBar"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="6dp" />
+
+        <ImageButton
+            android:id="@+id/img_sem_48"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:longClickable="false"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/alerta_rojo"
+            android:layout_below="@+id/img_sem_24"
+            android:layout_toRightOf="@+id/ratingBar"
+            android:layout_toEndOf="@+id/ratingBar" />
+
+        <TextView
+            android:id="@+id/lbl_l_sueno_48"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:layout_alignBaseline="@+id/textView12"
+            android:layout_alignBottom="@+id/textView12"
+            android:layout_alignLeft="@+id/lbl_l_sueno_sem"
+            android:layout_alignStart="@+id/lbl_l_sueno_sem" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sueño 24H"
+            android:layout_below="@+id/textView10"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="31dp" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sueño 48H"
+            android:layout_below="@+id/img_sem_24"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="23dp" />
+
+        <TextView
+            android:text="Nombre:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView10"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lbl_l_sueno_nombre"
+            android:layout_alignParentTop="true"
+            android:layout_alignLeft="@+id/lbl_l_sueno_24"
+            android:layout_alignStart="@+id/lbl_l_sueno_24" />
+
+        <TextView
+            android:text="Sueño Semana"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView7"
+            android:layout_alignBaseline="@+id/lbl_l_sueno_sem"
+            android:layout_alignBottom="@+id/lbl_l_sueno_sem"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lbl_l_sueno_sem"
+            android:layout_above="@+id/ratingBar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="17dp" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lbl_l_sueno_24"
+            android:layout_alignBaseline="@+id/textView4"
+            android:layout_alignBottom="@+id/textView4"
+            android:layout_alignLeft="@+id/lbl_l_sueno_48"
+            android:layout_alignStart="@+id/lbl_l_sueno_48" />
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ratingBar"
+            android:layout_above="@+id/textView14"
+            android:layout_alignRight="@+id/ib_s_consultar"
+            android:layout_alignEnd="@+id/ib_s_consultar"
+            android:layout_marginRight="26dp"
+            android:layout_marginEnd="26dp" />
+
+        <TextView
+            android:text="Último Sueño"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView14"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lbl_ult_sueno"
+            android:layout_centerVertical="true"
+            android:layout_alignLeft="@+id/lbl_l_sueno_sem"
+            android:layout_alignStart="@+id/lbl_l_sueno_sem" />
+
+        <TextView
+            android:text="Duración"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="37dp"
+            android:id="@+id/textView16"
+            android:layout_below="@+id/textView14"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lbl_duracion_ult_sueno"
+            android:layout_above="@+id/ib_s_nuevo"
+            android:layout_alignLeft="@+id/lbl_ult_sueno"
+            android:layout_alignStart="@+id/lbl_ult_sueno" />
+
+        <ImageButton
+            android:text="Tiempo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_alarm_on_black_24dp"
+            android:id="@+id/ib_s_consultar"
+            android:layout_alignTop="@+id/ib_s_nuevo"
+            android:layout_toRightOf="@+id/lbl_duracion_ult_sueno"
+            android:layout_toEndOf="@+id/lbl_duracion_ult_sueno"
+            android:layout_marginLeft="37dp"
+            android:layout_marginStart="37dp"
+            android:onClick="btn_consultar_clic" />
+
+        <ImageButton
+            android:text="Tiempo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_alarm_on_black_24dp"
+            android:id="@+id/ib_s_nuevo"
+            android:layout_marginTop="85dp"
+            android:layout_below="@+id/textView16"
+            android:layout_toRightOf="@+id/textView12"
+            android:layout_toEndOf="@+id/textView12"
+            android:onClick="btn_automatico_clic" />
+
+        <ImageButton
+            android:id="@+id/img_sem_24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:longClickable="false"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/alerta_rojo"
+            android:layout_marginTop="9dp"
+            android:layout_below="@+id/lbl_l_sueno_nombre"
+            android:layout_alignLeft="@+id/img_sem_48"
+            android:layout_alignStart="@+id/img_sem_48" />
+    -->
+
+
+</FrameLayout>
