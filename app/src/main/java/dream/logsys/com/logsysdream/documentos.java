@@ -249,8 +249,9 @@ public class documentos extends Fragment {
                 JSONObject o=new JSONObject(resultado.toString());
                 JSONObject driver=o.getJSONObject("vehicle");
                 getveiculo(driver);
+                pdialog.dismiss();
 
-        }catch(Exception e){
+            }catch(Exception e){
 
             Log.e("JSONArrayError",e.getMessage());
         }
