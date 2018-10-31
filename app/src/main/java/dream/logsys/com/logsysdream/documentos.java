@@ -67,6 +67,7 @@ import logsys.dream.com.mx.contracts.Usuario;
 import logsys.dream.com.mx.helpers.Viajes;
 import logsys.dream.com.mx.models.Bitacora;
 import logsys.dream.com.mx.models.Dream;
+import logsys.dream.com.mx.models.Registro;
 import logsys.dream.com.mx.models.ServiceData;
 import logsys.dream.com.mx.startup.FrescoApplication;
 import utils.GsonHelper;
@@ -80,7 +81,7 @@ public class documentos extends Fragment {
     // Metodo que queremos ejecutar en el servicio web
     private static final String Metodo = "getInfoGeneral";
     // Namespace definido en el servicio web
-    private static final String namespace = "http://tempuri.org";
+    private static final String namespace = "http://tempuri.org/";
     // namespace + metodo
     private static final String accionSoap = "http://tempuri.org/getInfoGeneral";
     // Fichero de definicion del servcio web
@@ -99,39 +100,7 @@ public class documentos extends Fragment {
     TextView noss,sAs,poliza;
 
 
-    public boolean consumirWS(){
-        Boolean bandera=true;
-        try {
 
-            SoapObject request = new SoapObject(namespace, Metodo);
-            request.addProperty("id_tms", pru);
-            request.addProperty("aliasUnidad", alia);
-            SoapSerializationEnvelope sobre = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-
-            sobre.dotNet = true;
-
-            sobre.setOutputSoapObject(request);
-
-            // Modelo el transporte
-            HttpTransportSE transporte = new HttpTransportSE(url);
-
-            // Llamada
-            transporte.call(accionSoap, sobre);
-
-            // Resultado
-            resultado= (SoapPrimitive) sobre.getResponse();
-
-
-        } catch (Exception e) {
-            Log.e("ERROR", e.getMessage());
-            bandera=false;
-        }finally {
-
-            return bandera;
-
-        }
-
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -144,7 +113,7 @@ public class documentos extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_documentos, container, false);
         context = view.getContext();
-         mandar();
+
         noss=view.findViewById(R.id.NSS);
         userName = view.findViewById(R.id.nameUser);
         curpUser = view.findViewById(R.id.userCurp);
@@ -157,7 +126,9 @@ public class documentos extends Fragment {
         userName.setText(nombre);
         userUnit.setText(alia);
 
-       getdates();
+        asyncdocuments b = new asyncdocuments();
+        b.execute();
+
         userLicencia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -190,80 +161,119 @@ public class documentos extends Fragment {
 
         return view;
     }
-    public  void getdates(){
-        pdialog = ProgressDialog.show(context, "", "Espere un momento", true);
 
-        RetreiveFeedTask task = new RetreiveFeedTask();
-        task.execute();
-
-        nombre=no+" "+ap+""+am;
-    }
     public  void mandar(){
         pru = globalVariable.getUsuario().getId();
         alia= globalVariable.getUsuario().getUnidad();
 
     }
 
-    class RetreiveFeedTask extends AsyncTask<String,String,String> {
-        @Override
-        protected void onPreExecute(){
-            super.onPreExecute();
-        }
-        @Override
-        protected String doInBackground(String... params) {
-            if(consumirWS()){
-                return "ok";
-            }else
-                return "error";
+    public boolean consumirWS(){
+        Boolean bandera=true;
+        try {
 
-        }
-        private void getDriver(JSONObject dri){
-            try {
-                no =dri.getString("nombre");
-                ap =dri.getString("apPat");
-                am= dri.getString("apMat");
+            mandar();
+
+            SoapObject request = new SoapObject(namespace, Metodo);
+            request.addProperty("aliasUnidad", alia);
+            request.addProperty("id_tms", pru);
 
 
-            } catch (JSONException e) {
-                e.printStackTrace();
-                Log.e("Driver_error",e.getMessage());
-            }
+            // Modelo el Sobre
+            SoapSerializationEnvelope sobre = new SoapSerializationEnvelope(SoapEnvelope.VER11);
 
-        }
-        private void getveiculo(JSONObject dri){
-            try {
-               tag =dri.getString("tag");
+            sobre.dotNet = true;
+
+            sobre.setOutputSoapObject(request);
+
+            // Modelo el transporte
+            HttpTransportSE transporte = new HttpTransportSE(url);
+
+            // Llamada
+            transporte.call(accionSoap, sobre);
+
+            // Resultado
+            resultado= (SoapPrimitive) sobre.getResponse();
+int a=4+4;
 
 
+        } catch (Exception e) {
+            Log.e("ERROR", e.getMessage());
+            bandera=false;
+        }finally {
 
-            } catch (JSONException e) {
-                e.printStackTrace();
-                Log.e("Driver_error",e.getMessage());
-            }
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            if(result.equals("ok")){
-            try {
-                JSONObject o=new JSONObject(resultado.toString());
-                JSONObject driver=o.getJSONObject("vehicle");
-                getveiculo(driver);
-                pdialog.dismiss();
-
-            }catch(Exception e){
-
-            Log.e("JSONArrayError",e.getMessage());
-        }
-            }else{
-                Log.e("ERROR", "Error al consumir el webService");
-            }
-
-            pdialog.dismiss();
-
+            return bandera;
+            /*
+             * El finally siempre se va a ejecutar, sin importar que se lanze
+             * una exepction
+             */
         }
 
     }
+    private class asyncdocuments extends AsyncTask<String,String,String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+
+            if (consumirWS()) {
+                return "ok";
+            } else
+                return "error";
+        }
+        private void getCar(JSONObject car){
+            try {
+//    String alia, nombre,no,ap,am,imgemp,tag,tipe,seguro,segurophone,sepolice,grupo,telcontac,Srfc,Scurp,Snolic,Svic,dates,imgliv,nimss,imgsua,nocont,antuguedad;
+
+                tag=car.getString("tag");
+                userPlaca.setText(car.getString("tag"));
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Log.e("Car_error",e.getMessage());
+            }
+
+        }
+
+        protected void onPostExecute(String result){
+            if(result.equals("ok")){
+                try {
+                    //Se cargara la informacion en todo
+                    JSONObject o=new JSONObject(resultado.toString());
+                    JSONObject vehicle=o.getJSONObject("vehicle");
+                    getCar(vehicle);
+
+                    Log.e("ResultadoEnPostExecute", resultado.toString());
+
+
+                    try {
+
+
+
+                    }
+                    catch(Exception e){
+
+                        Log.e("JSONArrayError",e.getMessage());
+                    }
+                } catch (Exception e) {
+
+
+                }
+            }else{
+                Log.e("ERROR", "Error al consumir el webService");
+            }
+        }
+
+
+
+
+    }
+
+
 
 
 }
