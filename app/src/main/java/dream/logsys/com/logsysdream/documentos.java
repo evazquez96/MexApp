@@ -97,7 +97,7 @@ public class documentos extends Fragment {
     TextView userPlaca;
     TextView userLicencia;
     TextView userVigencia;
-    TextView noss,sAs,poliza;
+    TextView noss,sAs,poliza,aseg,teas,psu,tell,urfc;
 
 
 
@@ -118,14 +118,19 @@ public class documentos extends Fragment {
         userName = view.findViewById(R.id.nameUser);
         curpUser = view.findViewById(R.id.userCurp);
         userUnit = view.findViewById(R.id.unitUser);
+        urfc = view.findViewById(R.id.RFC);
         userLicencia = view.findViewById(R.id.licenciaUser);
         userPlaca = view.findViewById(R.id.placaUser);
         userVigencia = view.findViewById(R.id.vigenciaUser);
+        aseg = view.findViewById(R.id.Aseguradora);
+        teas = view.findViewById(R.id.telAseguradora);
         sAs=view.findViewById(R.id.sua);
+        psu=view.findViewById(R.id.Poliza);
+        tell=view.findViewById(R.id.Tel);
         poliza=view.findViewById(R.id.POLIZASEGURO);
         userName.setText(nombre);
         userUnit.setText(alia);
-
+        pdialog = ProgressDialog.show(context, "", "Espere un momneto...", true);
         asyncdocuments b = new asyncdocuments();
         b.execute();
 
@@ -228,30 +233,61 @@ int a=4+4;
         private void getCar(JSONObject car){
             try {
 //    String alia, nombre,no,ap,am,imgemp,tag,tipe,seguro,segurophone,sepolice,grupo,telcontac,Srfc,Scurp,Snolic,Svic,dates,imgliv,nimss,imgsua,nocont,antuguedad;
-
+                userUnit.setText(alia);
                 tag=car.getString("tag");
                 userPlaca.setText(car.getString("tag"));
-
+                seguro=car.getString("Insurance");
+                aseg.setText(car.getString("Insurance"));
+                teas.setText(car.getString("Ins_Phone"));
+                psu.setText(car.getString("Ins_Policy"));
+                tell.setText(car.getString("telefono"));
             } catch (JSONException e) {
                 e.printStackTrace();
                 Log.e("Car_error",e.getMessage());
             }
 
         }
+        private void getoperador(JSONObject car){
+            try {
+                String nombrecompleto;
+                String format;
+//    String alia, nombre,no,ap,am,imgemp,tag,tipe,seguro,segurophone,sepolice,grupo,telcontac,Srfc,Scurp,Snolic,Svic,dates,imgliv,nimss,imgsua,nocont,antuguedad;
+              nombre=car.getString("nombre");
+                no=car.getString("nombre");
+                ap=car.getString("apPat");
+                am=car.getString("apMat");
+                nombrecompleto=no+" "+ap+" "+am;
+
+                userName.setText(nombrecompleto);
+                urfc.setText(car.getString("rfc"));
+                noss.setText    (car.getString("nIMSS"));
+                curpUser.setText(car.getString("curp"));
+                userLicencia.setText(car.getString("nLicencia"));
+                Svic=car.getString("fch_lic_vencimiento");
+               userVigencia.setText(Svic);
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Log.e("Car_error",e.getMessage());
+            }
+        }
+
 
         protected void onPostExecute(String result){
             if(result.equals("ok")){
                 try {
                     //Se cargara la informacion en todo
-                    JSONObject o=new JSONObject(resultado.toString());
-                    JSONObject vehicle=o.getJSONObject("vehicle");
-                    getCar(vehicle);
 
                     Log.e("ResultadoEnPostExecute", resultado.toString());
+                    pdialog.dismiss();
 
 
                     try {
-
+                        JSONObject o=new JSONObject(resultado.toString());
+                        JSONObject op=new JSONObject(resultado.toString());
+                        JSONObject vehicle=o.getJSONObject("vehicle");
+                        getCar(vehicle);
+                        getoperador(op);
+                        pdialog.dismiss();
 
 
                     }
