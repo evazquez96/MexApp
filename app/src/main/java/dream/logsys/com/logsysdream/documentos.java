@@ -3,9 +3,11 @@ package dream.logsys.com.logsysdream;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.se.omapi.Session;
 import android.support.v4.app.Fragment;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -73,6 +75,8 @@ import logsys.dream.com.mx.models.ServiceData;
 import logsys.dream.com.mx.startup.FrescoApplication;
 import utils.GsonHelper;
 
+import static android.widget.Toast.LENGTH_LONG;
+
 
 public class documentos extends Fragment {
 
@@ -99,7 +103,7 @@ public class documentos extends Fragment {
     TextView userLicencia;
     TextView userVigencia;
     TextView noss,sAs,poliza,aseg,teas,psu,tell,urfc,tiempo;
-    ImageView foto;
+    ImageView fotos;
 
 
 
@@ -116,7 +120,7 @@ public class documentos extends Fragment {
         context = view.getContext();
 
         noss=view.findViewById(R.id.NSS);
-        foto=view.findViewById(R.id.foto);
+        fotos=view.findViewById(R.id.foto);
         userName = view.findViewById(R.id.nameUser);
         curpUser = view.findViewById(R.id.userCurp);
         userUnit = view.findViewById(R.id.unitUser);
@@ -262,6 +266,7 @@ int a=4+4;
                 am=car.getString("apMat");
                 antuguedad=car.getString("antiguedad");
                 imgemp=car.getString("imgEmpleado");
+                asignarImagen(imgemp);
                 ant=Integer.parseInt(antuguedad);
                 an2=ant/365;
                 fant=an2+" años";
@@ -289,6 +294,18 @@ int a=4+4;
             }
         }
 
+        public void asignarImagen(String picture) {
+
+            try {
+
+                byte[] imageAsBytes = Base64.decode(picture.getBytes(), Base64.DEFAULT);
+                fotos.setImageBitmap(
+                        BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length)
+                );
+            } catch (Exception e) {
+                Log.e("Error imagen",e.getMessage());
+            }
+        }
 
         protected void onPostExecute(String result){
             if(result.equals("ok")){
