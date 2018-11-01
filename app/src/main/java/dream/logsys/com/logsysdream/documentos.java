@@ -97,7 +97,7 @@ public class documentos extends Fragment {
     TextView userPlaca;
     TextView userLicencia;
     TextView userVigencia;
-    TextView noss,sAs,poliza,aseg,teas,psu,tell,urfc;
+    TextView noss,sAs,poliza,aseg,teas,psu,tell,urfc,tiempo;
 
 
 
@@ -125,6 +125,7 @@ public class documentos extends Fragment {
         aseg = view.findViewById(R.id.Aseguradora);
         teas = view.findViewById(R.id.telAseguradora);
         sAs=view.findViewById(R.id.sua);
+        tiempo=view.findViewById(R.id.antiguedad);
         psu=view.findViewById(R.id.Poliza);
         tell=view.findViewById(R.id.Tel);
         poliza=view.findViewById(R.id.POLIZASEGURO);
@@ -250,21 +251,31 @@ int a=4+4;
         private void getoperador(JSONObject car){
             try {
                 String nombrecompleto;
-                String format;
+                String format,fant;
+                int ant,an2;
 //    String alia, nombre,no,ap,am,imgemp,tag,tipe,seguro,segurophone,sepolice,grupo,telcontac,Srfc,Scurp,Snolic,Svic,dates,imgliv,nimss,imgsua,nocont,antuguedad;
               nombre=car.getString("nombre");
                 no=car.getString("nombre");
                 ap=car.getString("apPat");
                 am=car.getString("apMat");
+                antuguedad=car.getString("antiguedad");
+                imgemp=car.getString("imgEmpleado");
+                ant=Integer.parseInt(antuguedad);
+                an2=ant/365;
+                fant=an2+" años";
                 nombrecompleto=no+" "+ap+" "+am;
-
                 userName.setText(nombrecompleto);
                 urfc.setText(car.getString("rfc"));
                 noss.setText    (car.getString("nIMSS"));
                 curpUser.setText(car.getString("curp"));
                 userLicencia.setText(car.getString("nLicencia"));
                 Svic=car.getString("fch_lic_vencimiento");
-               userVigencia.setText(Svic);
+                long time = Long.parseLong( Svic.substring(6, Svic.length() - 2 ));
+                Date date = new Date(time);
+                format = new SimpleDateFormat("dd/MM/yyyy").format(date);
+                userVigencia.setText(format);
+                tiempo.setText(fant);
+
             } catch (JSONException e) {
                 e.printStackTrace();
                 Log.e("Car_error",e.getMessage());
