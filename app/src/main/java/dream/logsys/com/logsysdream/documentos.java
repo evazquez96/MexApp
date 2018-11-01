@@ -95,14 +95,14 @@ public class documentos extends Fragment {
     Context context = null;
     ProgressDialog pdialog = null;
     int pru;
-    String alia, nombre,no,ap,am,imgemp,tag,tipe,seguro,segurophone,sepolice,grupo,telcontac,Srfc,Scurp,Snolic,Svic,dates,imgliv,nimss,imgsua,nocont,antuguedad;
+    String alia, nombre,no,ap,am,imgemp,tag,seguro,imgseg,Svic,imgliv,imgsua,imgpoliza,imgcurp,nocont,antuguedad;
     TextView userName;
     TextView curpUser;
     TextView userUnit;
     TextView userPlaca;
     TextView userLicencia;
     TextView userVigencia;
-    TextView noss,sAs,poliza,aseg,teas,psu,tell,urfc,tiempo;
+    TextView noss,sAs,poliza,aseg,teas,psu,tell,urfc,tiempo,control;
     ImageView fotos;
 
 
@@ -134,6 +134,7 @@ public class documentos extends Fragment {
         tiempo=view.findViewById(R.id.antiguedad);
         psu=view.findViewById(R.id.Poliza);
         tell=view.findViewById(R.id.Tel);
+        control=view.findViewById(R.id.Rcontrol);
         poliza=view.findViewById(R.id.POLIZASEGURO);
         userName.setText(nombre);
         userUnit.setText(alia);
@@ -144,27 +145,85 @@ public class documentos extends Fragment {
         userLicencia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+try{
+    Uri uri = Uri.parse(imgliv);
+    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+    startActivity(intent);
 
+}catch (Exception e){
+
+    Uri uri = Uri.parse("https://drive.google.com/file/d/1K_dnX-subFO3uwPMbGGyC1L5VzT1ddif/view?usp=sharing");
+    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+    startActivity(intent);
+}
 
             }
         });
         noss.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                try{
+                    Uri uri = Uri.parse(imgseg);
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(intent);
 
+                }catch (Exception e){
+
+                    Uri uri = Uri.parse("https://drive.google.com/file/d/1K_dnX-subFO3uwPMbGGyC1L5VzT1ddif/view?usp=sharing");
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(intent);
+                }
 
             }
         });
         sAs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                try{
+                    Uri uri = Uri.parse(imgsua);
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(intent);
 
+                }catch (Exception e){
+
+                    Uri uri = Uri.parse("https://drive.google.com/file/d/1K_dnX-subFO3uwPMbGGyC1L5VzT1ddif/view?usp=sharing");
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(intent);
+                }
             }
         });
 
         poliza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                try{
+                    Uri uri = Uri.parse(imgpoliza);
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(intent);
+
+                }catch (Exception e){
+
+                    Uri uri = Uri.parse("https://drive.google.com/file/d/1K_dnX-subFO3uwPMbGGyC1L5VzT1ddif/view?usp=sharing");
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(intent);
+                }
+            }
+        });
+        curpUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try{
+                    Uri uri = Uri.parse(imgcurp);
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(intent);
+
+                }catch (Exception e){
+
+                    Uri uri = Uri.parse("https://drive.google.com/file/d/1K_dnX-subFO3uwPMbGGyC1L5VzT1ddif/view?usp=sharing");
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(intent);
+                }
 
 
             }
@@ -259,13 +318,14 @@ int a=4+4;
                 String nombrecompleto;
                 String format,fant;
                 int ant,an2;
-//    String alia, nombre,no,ap,am,imgemp,tag,tipe,seguro,segurophone,sepolice,grupo,telcontac,Srfc,Scurp,Snolic,Svic,dates,imgliv,nimss,imgsua,nocont,antuguedad;
               nombre=car.getString("nombre");
                 no=car.getString("nombre");
                 ap=car.getString("apPat");
                 am=car.getString("apMat");
                 antuguedad=car.getString("antiguedad");
                 imgemp=car.getString("imgEmpleado");
+                nocont=car.getString("noControl");
+                control.setText(""+nocont);
                 asignarImagen(imgemp);
                 ant=Integer.parseInt(antuguedad);
                 an2=ant/365;
@@ -273,8 +333,8 @@ int a=4+4;
                 nombrecompleto=no+" "+ap+" "+am;
                 userName.setText(nombrecompleto);
                 urfc.setText(car.getString("rfc"));
-                noss.setText    (car.getString("nIMSS"));
-                curpUser.setText(car.getString("curp"));
+                noss.setText    (" "+car.getString("nIMSS"+"     "));
+                curpUser.setText(" "+car.getString("curp"+" "));
                 userLicencia.setText(car.getString("nLicencia"));
                 Svic=car.getString("fch_lic_vencimiento");
                 long time = Long.parseLong( Svic.substring(6, Svic.length() - 2 ));
@@ -287,6 +347,11 @@ int a=4+4;
                     tiempo.setText(antuguedad+" dias");
                 }
 
+                imgliv=car.getString("imglicencia");
+                imgsua=car.getString("imgSUA");
+                imgseg=car.getString("imgseguro");
+                imgpoliza=car.getString("imgpoliza");
+                imgcurp=car.getString("imgcurp");
 
             } catch (JSONException e) {
                 e.printStackTrace();

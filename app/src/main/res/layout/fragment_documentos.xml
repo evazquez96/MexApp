@@ -115,8 +115,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="10dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -129,6 +129,7 @@
                         android:id="@+id/userCurp"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:background="@drawable/ev1"
                         android:gravity="center"
                         android:textColor="@color/azul"
 
@@ -187,9 +188,9 @@
                     <TextView
                         android:id="@+id/licenciaUser"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:gravity="center"
-
+                        android:background="@drawable/ev1"
                         android:textColor="@color/azul"
                         android:textSize="11dp" />
 
@@ -234,6 +235,7 @@
                         android:id="@+id/NSS"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:background="@drawable/ev1"
                         android:gravity="center"
                         android:textColor="@color/azul"
                         android:textSize="11dp" />
@@ -242,8 +244,8 @@
                         android:id="@+id/sua"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-
-                        android:text="    SUA"
+                        android:background="@drawable/ev1"
+                        android:text=" SUA "
                         android:textColor="@color/azul"
                         android:textStyle="bold" />
 
@@ -396,10 +398,10 @@
 
                     <TextView
                         android:id="@+id/POLIZASEGURO"
-                        android:layout_width="match_parent"
-
+                        android:layout_width="wrap_content"
+                        android:background="@drawable/ev1"
                         android:layout_height="match_parent"
-                        android:text="Póliza seguro"
+                        android:text=" Póliza de seguro "
                         android:textColor="@color/azul"
                         android:textStyle="bold" />
 
