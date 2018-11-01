@@ -46,13 +46,11 @@
             <LinearLayout
                 android:layout_width="80dp"
                 android:layout_height="100dp"
-                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
 
                 android:background="@drawable/encabez">
-
-
 
 
                 <ImageView
@@ -67,7 +65,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+
                 android:orientation="vertical">
 
 
@@ -88,8 +86,7 @@
                         android:id="@+id/nameUser"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textSize="11dp"
-                        />
+                        android:textSize="11dp" />
 
                 </LinearLayout>
 
@@ -133,8 +130,8 @@
                         android:id="@+id/userCurp"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:textColor="@color/azul"
                         android:gravity="center"
+                        android:textColor="@color/azul"
 
                         android:textSize="11dp" />
 
@@ -142,18 +139,17 @@
 
             </LinearLayout>
         </LinearLayout>
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/encabez"
                 android:layout_margin="10dp"
+                android:background="@drawable/encabez"
                 android:orientation="vertical">
-
-
-
 
 
                 <LinearLayout
@@ -165,8 +161,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:textStyle="bold"
-                        android:text="Contacto Mexamerik: "/>
+                        android:text="Contacto Mexamerik: "
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/Tel"
@@ -186,8 +182,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:textStyle="bold"
-                        android:text="No Licencia: "/>
+                        android:text="No Licencia: "
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/licenciaUser"
@@ -200,16 +196,18 @@
 
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:layout_margin="5dp"
                     android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:textStyle="bold"
-                        android:text="Vig. Lic.: "/>
+                        android:text="Vig. Lic.: "
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/vigenciaUser"
@@ -221,8 +219,6 @@
                 </LinearLayout>
 
 
-
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
@@ -232,8 +228,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:textStyle="bold"
-                        android:text="No. IMS: "/>
+                        android:text="No. IMS: "
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/NSS"
@@ -248,9 +244,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
 
-                        android:textStyle="bold"
+                        android:text="    SUA"
                         android:textColor="@color/azul"
-                        android:text="    SUA"/>
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -263,16 +259,18 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:textStyle="bold"
-                        android:text="No R-Control: "/>
+                        android:text="No R-Control: "
+                        android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/Rcontrol"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:textSize="11dp"/>
+                        android:textSize="11dp" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
@@ -282,14 +280,16 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:textStyle="bold"
-                        android:text="Antigüedad: "/>
+                        android:text="Antigüedad: "
+                        android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/antiguedad"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="match_parent" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
@@ -299,8 +299,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:textStyle="bold"
-                        android:text="Unidad: "/>
+                        android:text="Unidad: "
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/unitUser"
@@ -309,11 +309,12 @@
                         android:gravity="center"
 
                         android:textSize="11dp" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:textStyle="bold"
-                        android:text="  Placas : "/>
+                        android:text="  Placas : "
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/placaUser"
@@ -334,16 +335,18 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:textStyle="bold"
-                        android:text="No Póliza Unidad: "/>
+                        android:text="No Póliza Unidad: "
+                        android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/Poliza"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
-                        android:textSize="11dp"/>
+                        android:textSize="11dp" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
@@ -353,16 +356,18 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:textStyle="bold"
-                        android:text="Aseguradora: "/>
+                        android:text="Aseguradora: "
+                        android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/Aseguradora"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
-                        android:textSize="11dp"/>
+                        android:textSize="11dp" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
@@ -372,16 +377,18 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:textStyle="bold"
-                        android:text="Tel Aseguradora: "/>
+                        android:text="Tel Aseguradora: "
+                        android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/telAseguradora"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
-                        android:textSize="11dp"/>
+                        android:textSize="11dp" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
@@ -393,9 +400,9 @@
                         android:layout_width="match_parent"
 
                         android:layout_height="match_parent"
-                        android:textStyle="bold"
+                        android:text="Póliza seguro"
                         android:textColor="@color/azul"
-                        android:text="Póliza seguro"/>
+                        android:textStyle="bold" />
 
 
                 </LinearLayout>
