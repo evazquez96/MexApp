@@ -274,7 +274,12 @@ int a=4+4;
                 Date date = new Date(time);
                 format = new SimpleDateFormat("dd/MM/yyyy").format(date);
                 userVigencia.setText(format);
-                tiempo.setText(fant);
+                if(ant>=360){
+                    tiempo.setText(fant);
+                }else if(ant<360){
+                    tiempo.setText(antuguedad+" dias");
+                }
+
 
             } catch (JSONException e) {
                 e.printStackTrace();
