@@ -119,10 +119,10 @@ public class LoginActivity extends AppCompatActivity {//implements LoaderCallbac
         //hardcodeado
 
      //sim = "5566940882";//
-       // sim = "5530165296";//
-    // sim = "5555071692";//Pablo sanches Rebolledo
-    // sim = "4422391223";//Heriberto Rico Hernandez
- sim = "5563187021";
+     sim = "5530165296";//
+  // sim = "5555071692";//Pablo sanches Rebolledo
+// sim = "4422391223";//Heriberto Rico Hernandez
+ //sim = "5563187021";
 
         Log.d("LoginActivity","::::::::::::::::::::::::::::: #teléfono" + sim);
         LoginTask = new UserLoginAutomaticoTask(sim);
