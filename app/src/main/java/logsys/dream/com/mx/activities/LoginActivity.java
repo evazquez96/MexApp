@@ -115,11 +115,11 @@ public class LoginActivity extends AppCompatActivity {//implements LoaderCallbac
         @SuppressLint("MissingPermission")
         String sim = telemamanger.getLine1Number();
 
-    sim = sim.substring(sim.indexOf('+')+3);       //descomentar esta linea y comentar la linea 95
+    //sim = sim.substring(sim.indexOf('+')+3);       //descomentar esta linea y comentar la linea 95
         //hardcodeado
 
      //sim = "5566940882";//
-   //  sim = "5530165296";//
+    sim = "5530165296";//
   // sim = "5555071692";//Pablo sanches Rebolledo
 // sim = "4422391223";//Heriberto Rico Hernandez
  //sim = "5563187021";
