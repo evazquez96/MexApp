@@ -111,8 +111,8 @@
             android:name=".bitacora2"
             android:icon="@drawable/bitacora"
             android:label="Bitacora"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:logo="@drawable/logo_app" />
+            android:logo="@drawable/logo_app"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".grafica"
             android:screenOrientation="landscape" />
@@ -146,7 +146,8 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".Documents"></activity>
+        <activity android:name=".Documents" />
+        <activity android:name=".imagens"></activity>
     </application>
 
 </manifest>

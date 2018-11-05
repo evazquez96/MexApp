@@ -10,7 +10,8 @@
         android:angle="45"
         />
     <stroke
-        android:width="0dp"
-        android:color="@android:color/darker_gray" />
+        android:width="10dp"
+        android:color="@android:color/transparent" />
     <corners android:radius="9pt" />
+
 </shape>

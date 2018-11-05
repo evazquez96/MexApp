@@ -152,9 +152,8 @@ try{
 
 }catch (Exception e){
 
-    Uri uri = Uri.parse("https://drive.google.com/file/d/1K_dnX-subFO3uwPMbGGyC1L5VzT1ddif/view?usp=sharing");
-    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-    startActivity(intent);
+    Intent imagen = new Intent(getActivity().getApplication(), imagens.class);
+    startActivity(imagen);
 }
 
             }
@@ -167,11 +166,11 @@ try{
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                     startActivity(intent);
 
-                }catch (Exception e){
+                }
+                catch (Exception e){
 
-                    Uri uri = Uri.parse("https://drive.google.com/file/d/1K_dnX-subFO3uwPMbGGyC1L5VzT1ddif/view?usp=sharing");
-                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                    startActivity(intent);
+                   Intent imagen = new Intent(getActivity().getApplication(), imagens.class);
+                    startActivity(imagen);
                 }
 
             }
@@ -186,9 +185,8 @@ try{
 
                 }catch (Exception e){
 
-                    Uri uri = Uri.parse("https://drive.google.com/file/d/1K_dnX-subFO3uwPMbGGyC1L5VzT1ddif/view?usp=sharing");
-                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                    startActivity(intent);
+                    Intent imagen = new Intent(getActivity().getApplication(), imagens.class);
+                    startActivity(imagen);
                 }
             }
         });
@@ -204,9 +202,8 @@ try{
 
                 }catch (Exception e){
 
-                    Uri uri = Uri.parse("https://drive.google.com/file/d/1K_dnX-subFO3uwPMbGGyC1L5VzT1ddif/view?usp=sharing");
-                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                    startActivity(intent);
+                    Intent imagen = new Intent(getActivity().getApplication(), imagens.class);
+                    startActivity(imagen);
                 }
             }
         });
@@ -220,9 +217,8 @@ try{
 
                 }catch (Exception e){
 
-                    Uri uri = Uri.parse("https://drive.google.com/file/d/1K_dnX-subFO3uwPMbGGyC1L5VzT1ddif/view?usp=sharing");
-                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                    startActivity(intent);
+                    Intent imagen = new Intent(getActivity().getApplication(), imagens.class);
+                    startActivity(imagen);
                 }
 
 
@@ -318,6 +314,8 @@ int a=4+4;
                 String nombrecompleto;
                 String format,fant;
                 int ant,an2;
+                imgliv=car.getString("imglicencia");
+                imgsua=car.getString("imgSUA");
               nombre=car.getString("nombre");
                 no=car.getString("nombre");
                 ap=car.getString("apPat");
@@ -347,8 +345,7 @@ int a=4+4;
                     tiempo.setText(antuguedad+" dias");
                 }
 
-                imgliv=car.getString("imglicencia");
-                imgsua=car.getString("imgSUA");
+
                 imgseg=car.getString("imgseguro");
                 imgpoliza=car.getString("imgpoliza");
                 imgcurp=car.getString("imgcurp");
