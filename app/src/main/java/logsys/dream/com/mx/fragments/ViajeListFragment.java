@@ -120,21 +120,22 @@ public class ViajeListFragment extends Fragment
 
         @Override
         public void onBindViewHolder(final ViajesRecyclerViewAdapter.ViewHolder holder, final int position) {
-            holder.mNombreViaje.setText(mViajes[position].getOrigen() + " - " + mViajes[position].getDestino());
-            holder.mCliente.setText(mViajes[position].getCliente());
-            holder.mComentarios.setText(mViajes[position].getCitaCarga());
-            holder.mViajeSolicitud.setText("Solicitud: "+ mViajes[position].getNumeroSolicitud());
+            try {
+                holder.mNombreViaje.setText(mViajes[position].getOrigen() + " - " + mViajes[position].getDestino());
+                holder.mCliente.setText(mViajes[position].getCliente());
+                holder.mComentarios.setText(mViajes[position].getCitaCarga());
+                holder.mViajeSolicitud.setText("Solicitud: " + mViajes[position].getNumeroSolicitud());
 
 
-            holder.mView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //Toast.makeText(view.getContext(),"Click",Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(view.getContext(), ConsultaViajeActivity.class);
-                    intent.putExtra("id",mViajes[position].getId());
-                    mActivity.startActivity(intent);
-                }
-            });
+                holder.mView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //Toast.makeText(view.getContext(),"Click",Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(view.getContext(), ConsultaViajeActivity.class);
+                        intent.putExtra("id", mViajes[position].getId());
+                        mActivity.startActivity(intent);
+                    }
+                });
 
            /* FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) holder.mImageView.getLayoutParams();
             if (mRecyclerView.getLayoutManager() instanceof GridLayoutManager) {
@@ -144,6 +145,9 @@ public class ViajeListFragment extends Fragment
             } else {
                 layoutParams.height = 800;
             }*/
+            }catch (Exception ex) {
+
+            }
         }
 
         @Override

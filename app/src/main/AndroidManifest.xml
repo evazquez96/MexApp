@@ -147,7 +147,15 @@
         </receiver>
 
         <activity android:name=".Documents" />
+<<<<<<< HEAD
         <activity android:name=".imagens"></activity>
+=======
+        <activity android:name="logsys.dream.com.mx.viajes.Viajes" />
+        <activity
+            android:name="logsys.dream.com.mx.viajes.ViajesBase"
+            android:label="@string/title_activity_viajes_base"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+>>>>>>> 1754808fd94c13830a1db73e11c98c8e59139ba1
     </application>
 
 </manifest>
