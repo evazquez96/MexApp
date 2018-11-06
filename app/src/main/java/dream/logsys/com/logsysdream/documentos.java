@@ -146,7 +146,7 @@ public class documentos extends Fragment {
             @Override
             public void onClick(View v) {
 try{
-    Uri uri = Uri.parse(imgliv);
+    Uri uri = Uri.parse(imgliv.replace(" ",""));
     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
     startActivity(intent);
 
@@ -162,7 +162,7 @@ try{
             @Override
             public void onClick(View v) {
                 try{
-                    Uri uri = Uri.parse(imgseg);
+                    Uri uri = Uri.parse(imgseg.replace(" ",""));
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                     startActivity(intent);
 
@@ -179,7 +179,12 @@ try{
             @Override
             public void onClick(View v) {
                 try{
-                    Uri uri = Uri.parse(imgsua);
+
+
+                  //  Toast.makeText(context, usus, Toast.LENGTH_SHORT).show();  // el usuario no tiene ninguna app que pueda abrir pdfs
+
+
+                    Uri uri = Uri.parse(imgsua.replace(" ",""));
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                     startActivity(intent);
 
@@ -196,7 +201,7 @@ try{
             public void onClick(View v) {
 
                 try{
-                    Uri uri = Uri.parse(imgpoliza);
+                    Uri uri = Uri.parse(imgpoliza.replace(" ",""));
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                     startActivity(intent);
 
