@@ -95,7 +95,7 @@ public class documentos extends Fragment {
     Context context = null;
     ProgressDialog pdialog = null;
     int pru;
-    String alia, nombre,no,ap,am,imgemp,tag,seguro,imgseg,Svic,imgliv,imgsua,imgpoliza,imgcurp,nocont,antuguedad;
+    String alia, nombre,no,ap,am,imgemp,tag,seguro,imgseg,Svic,imgliv,imgsua,imgpoliza,imgcurp,nocont,antuguedad,telcontac;
     TextView userName;
     TextView curpUser;
     TextView userUnit;
@@ -141,6 +141,18 @@ public class documentos extends Fragment {
         pdialog = ProgressDialog.show(context, "", "Espere un momento...", true);
         asyncdocuments b = new asyncdocuments();
         b.execute();
+
+        tell.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*  try{
+                 *//* Intent i = new Intent(Intent.ACTION_CALL);
+                i.setData(Uri.parse(telcontac));
+                startActivity(i);
+                }catch (Exception e){*//*
+
+            }*/
+            }});
 
         userLicencia.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -307,6 +319,8 @@ int a=4+4;
                 aseg.setText(car.getString("Insurance"));
                 teas.setText(car.getString("Ins_Phone"));
                 psu.setText(car.getString("Ins_Policy"));
+
+                telcontac=car.getString("telefono");
                 tell.setText(car.getString("telefono"));
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -319,8 +333,13 @@ int a=4+4;
                 String nombrecompleto;
                 String format,fant;
                 int ant,an2;
-                imgliv=car.getString("imglicencia");
+
+                imgliv=car.getString("licenciaURL");
                 imgsua=car.getString("imgSUA");
+                imgseg=car.getString("imsURL");
+
+
+
               nombre=car.getString("nombre");
                 no=car.getString("nombre");
                 ap=car.getString("apPat");
@@ -350,10 +369,9 @@ int a=4+4;
                     tiempo.setText(antuguedad+" dias");
                 }
 
-
-                imgseg=car.getString("imgseguro");
                 imgpoliza=car.getString("imgpoliza");
                 imgcurp=car.getString("imgcurp");
+
 
             } catch (JSONException e) {
                 e.printStackTrace();
