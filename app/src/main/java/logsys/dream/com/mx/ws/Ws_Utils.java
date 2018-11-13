@@ -20,8 +20,8 @@ import logsys.dream.com.mx.startup.FrescoApplication;
 public class Ws_Utils {
 
     //hacerla dinámica, leerla de algun archivo de configuración
-    private static String url_ServidorDreams = "http://app.mexamerik.com/Dream/";
-    private static String url_ServidorErp = "http://app.mexamerik.com/Dream/";
+    private static String url_ServidorDreams = "https://app.mexamerik.com/Dream/";
+    private static String url_ServidorErp = "https://app.mexamerik.com/Dream/";
     //private static String url_ServidorDreams = "http://app.mexamerik.com/Dream_Pruebas/";
     //private static String url_ServidorErp = "http://app.mexamerik.com/Dream_Pruebas/";
     //private static String url_Servidor = "http://192.168.1.149:17245/";

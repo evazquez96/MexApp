@@ -90,18 +90,19 @@ public class documentos extends Fragment {
     // namespace + metodo
     private static final String accionSoap = "http://tempuri.org/getInfoGeneral";
     // Fichero de definicion del servcio web
-    private static final String url = "http://tms.logsys.com.mx/mexapp/MexAppws.asmx";
+    private static final String url = "https://app.mexamerik.com/mexapp/MexAppws.asmx";
     public  SoapPrimitive resultado;
     Context context = null;
     ProgressDialog pdialog = null;
     int pru;
-    String alia, nombre,no,ap,am,imgemp,tag,seguro,imgseg,Svic,imgliv,imgsua,imgpoliza,imgcurp,nocont,antuguedad,telcontac;
+    String alia, nombre,no,ap,am,imgemp,tag,seguro,imgseg,Svic,imgliv,imgsua,imgpoliza,imgcurp,nocont,antuguedad,telcontac,srfc,snimss,scurp,clic;
     TextView userName;
     TextView curpUser;
     TextView userUnit;
     TextView userPlaca;
     TextView userLicencia;
     TextView userVigencia;
+    LinearLayout lnco;
     TextView noss,sAs,poliza,aseg,teas,psu,tell,urfc,tiempo,control;
     ImageView fotos;
 
@@ -311,7 +312,6 @@ int a=4+4;
         }
         private void getCar(JSONObject car){
             try {
-//    String alia, nombre,no,ap,am,imgemp,tag,tipe,seguro,segurophone,sepolice,grupo,telcontac,Srfc,Scurp,Snolic,Svic,dates,imgliv,nimss,imgsua,nocont,antuguedad;
                 userUnit.setText(alia);
                 tag=car.getString("tag");
                 userPlaca.setText(car.getString("tag"));
@@ -329,36 +329,53 @@ int a=4+4;
 
         }
         private void getoperador(JSONObject car){
+            //srfc,snimss,scurp,clic
             try {
                 String nombrecompleto;
                 String format,fant;
                 int ant,an2;
+                imgemp=car.getString("imgEmpleado");
+                no=car.getString("nombre");
+                ap=car.getString("apPat");
+                am=car.getString("apMat");
+                srfc=car.getString("rfc");
+                scurp=car.getString("curp");
+                clic=car.getString("nLicencia");
+                Svic=car.getString("fch_lic_vencimiento");
+                snimss=car.getString("nIMSS");
+                nocont=car.getString("noControl");
+                antuguedad=car.getString("antiguedad");
 
                 imgliv=car.getString("licenciaURL");
                 imgsua=car.getString("imgSUA");
                 imgseg=car.getString("imsURL");
 
 
+   if (nocont=="null"){
+       control.setText("");
+   }else{
+       control.setText(""+nocont);
+   }
 
-              nombre=car.getString("nombre");
-                no=car.getString("nombre");
-                ap=car.getString("apPat");
-                am=car.getString("apMat");
-                antuguedad=car.getString("antiguedad");
-                imgemp=car.getString("imgEmpleado");
-                nocont=car.getString("noControl");
-                control.setText(""+nocont);
+
+
+
+
+
+
+
+
                 asignarImagen(imgemp);
                 ant=Integer.parseInt(antuguedad);
                 an2=ant/365;
                 fant=an2+" años";
                 nombrecompleto=no+" "+ap+" "+am;
                 userName.setText(nombrecompleto);
-                urfc.setText(car.getString("rfc"));
-                noss.setText    (car.getString("nIMSS"));
-                curpUser.setText(car.getString("curp"));
-                userLicencia.setText(car.getString("nLicencia"));
-                Svic=car.getString("fch_lic_vencimiento");
+                urfc.setText(srfc);
+                noss.setText(snimss);
+                curpUser.setText(scurp);
+                userLicencia.setText(clic);
+
                 long time = Long.parseLong( Svic.substring(6, Svic.length() - 2 ));
                 Date date = new Date(time);
                 format = new SimpleDateFormat("dd/MM/yyyy").format(date);
@@ -398,7 +415,7 @@ int a=4+4;
                     //Se cargara la informacion en todo
 
                     Log.e("ResultadoEnPostExecute", resultado.toString());
-                    pdialog.dismiss();
+
 
 
                     try {

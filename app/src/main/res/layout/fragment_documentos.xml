@@ -169,6 +169,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
+                        android:background="@drawable/ev1"
                         android:textSize="11dp" />
 
                 </LinearLayout>
@@ -240,18 +241,20 @@
                         android:textColor="@color/azul"
                         android:textSize="11dp" />
 
-                    <TextView
-                        android:id="@+id/sua"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/ev1"
-                        android:text=" SUA "
-                        android:textColor="@color/azul"
-                        android:textStyle="bold" />
+
 
                 </LinearLayout>
+                <TextView
+                    android:id="@+id/sua"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/ev1"
+                    android:text=" SUA "
+                    android:textColor="@color/azul"
+                    android:textStyle="bold" />
 
                 <LinearLayout
+                    android:id="@+id/lncont"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:layout_margin="5dp"
@@ -397,13 +400,21 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/POLIZASEGURO"
                         android:layout_width="wrap_content"
                         android:background="@drawable/ev1"
                         android:layout_height="match_parent"
                         android:text=" Póliza de seguro "
                         android:textColor="@color/azul"
                         android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/POLIZASEGURO"
+                        android:layout_width="wrap_content"
+                        android:background="@drawable/ev1"
+                        android:layout_height="match_parent"
+                        android:text=" "
+                        android:textColor="@color/azul"
+                        android:textStyle="bold" />
+
 
 
                 </LinearLayout>

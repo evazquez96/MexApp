@@ -187,7 +187,7 @@ private void navegar()
         fragment1.setArguments(bundle);
         adapter.addFragment(fragment1, "Preasignados");
 
-        ViajeActualFragment fragment3= new ViajeActualFragment();
+        actual_tmp fragment3= new actual_tmp();
         bundle  = new Bundle();
         bundle.putInt("type", 3);
         fragment3.setArguments(bundle);
