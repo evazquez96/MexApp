@@ -554,16 +554,14 @@ public class bitacora2 extends AppCompatActivity {
                         String origin;
                         String desty;
                         Viajes viaj = new Viajes();
-                        origenes=(TextView)findViewById(R.id.origen);
-                        destinos=(TextView)findViewById(R.id.dest);
-                        solicitud=(TextView)findViewById(R.id.sol);
+
 
                         origin=viaj.getOrigenn();
                         desty=viaj.getDestinoo();
                         no = viaj.getSolicitud();
-                        origenes.setText(origin);
+                      /*  origenes.setText(origin);
                         destinos.setText(desty);
-
+*/
                         solicitud.setText(String.valueOf(no));
                         createarch();
                         //aqui ira el pdf
@@ -608,12 +606,141 @@ public class bitacora2 extends AppCompatActivity {
     TextView solicitud;
     TextView mmmodelo;
     LinearLayout x;
+    String soli,ori,desty;
+    private static final String Metodo1 = "GetViajesActual";
+    // Namespace definido en el servicio web
+    private static final String namespace1 = "http://tempuri.org/";
+    // namespace + metodo
+    private static final String accionSoap1 = "http://tempuri.org/GetViajesActual";
+    // Fichero de definicion del servcio web
+    private static final String url1 = "https://app.mexamerik.com/Mexapp_viajes/Viajes.asmx?";
+    public SoapPrimitive resultado1;
+
+
+    public boolean consumirWS1(){
+
+        Boolean bandera=true;
+        try {
+
+            String s=new SimpleDateFormat("yyyy/MM/dd").format(new java.util.Date());
+            fecha=s;
+
+            SoapObject request = new SoapObject(namespace1, Metodo1);
+            request.addProperty("fecha", fecha);
+            request.addProperty("ID_Usuario", pru);
+
+
+            // Modelo el Sobre
+            SoapSerializationEnvelope sobre = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+
+            sobre.dotNet = true;
+
+            sobre.setOutputSoapObject(request);
+
+            // Modelo el transporte
+            HttpTransportSE transporte = new HttpTransportSE(url1);
+
+            // Llamada
+            transporte.call(accionSoap1, sobre);
+
+            // Resultado
+            resultado= (SoapPrimitive) sobre.getResponse();
+            int a=4+4;
+
+
+        } catch (Exception e) {
+            Log.e("ERROR", e.getMessage());
+            bandera=false;
+        }finally {
+
+            return bandera;
+
+        }
+
+
+
+    }
+
+
+    private class asyncdocuments extends AsyncTask<String,String,String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+
+            if (consumirWS1()) {
+                return "ok";
+            } else
+                return "error";
+        }
+
+
+        private void getCar(JSONObject car){
+            String format,form2,for3;
+            // scpo TextView header,solicitud,shitment,cpo,cliente,origin,destino,dir,ocita,dirdest,citdes;
+
+            try {
+
+               solicitud.setText(car.getString("Id"));
+                origenes.setText(car.getString("Origen"));
+                destinos.setText(car.getString("Destino"));
+
+                soli=car.getString("Id");
+                ori=car.getString("Origen");
+                desty=car.getString("Destino");
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Log.e("Car_error",e.getMessage());
+            }
+
+        }
+
+
+
+
+        protected void onPostExecute(String result){
+            if(result.equals("ok")){
+                String res,res2;
+
+                try {
+                    int sum=2+2;
+                    res=resultado.toString().replace("[","");
+                    res2=res.replace("]","");
+                    JSONObject o=new JSONObject(res2);
+                    getCar(o);
+                    int sum12=2+2;
+
+
+
+
+                }
+                catch(Exception e){
+
+                    Log.e("JSONArrayError",e.getMessage());
+                }
+            }
+            else{
+                Log.e("ERROR", "Error al consumir el webService");
+            }
+        }
+
+
+
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bitacora2);
-
+        origenes=(TextView)findViewById(R.id.origen);
+        destinos=(TextView)findViewById(R.id.dest);
+        solicitud=(TextView)findViewById(R.id.sol);
         uni=(TextView)findViewById(R.id.Unidad);
         uni=(TextView)findViewById(R.id.Unidad);
         operador=(TextView)findViewById(R.id.Oper);
@@ -624,10 +751,14 @@ public class bitacora2 extends AppCompatActivity {
           uni.setText(alia);
           asyncBitacora b = new asyncBitacora();
           b.execute();
+         asyncdocuments c = new asyncdocuments();
+            c.execute();
           getoperador();
           operador.setText(globalVariable.getUsuario().getNombre());
           getviaje();
           progreso();
+
+
         //  x.setVisibility(View.GONE);
 
       }catch (Exception e){
@@ -714,9 +845,9 @@ public class bitacora2 extends AppCompatActivity {
         String names=globalVariable.getUsuario().getNombre();
         String unio=globalVariable.getUsuario().getUnidad();
         Viajes viajes = new Viajes();
-        int solidas=viaj.getSolicitud();
-        String or=viajes.getOrigenn();
-        String desa=viajes.getDestinoo();
+        String solidas=soli;
+        String or=ori;
+        String desa=desty;
         String placo= pa;
         String licenciado=lice;
         String vigencias=format;

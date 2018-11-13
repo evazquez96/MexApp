@@ -151,22 +151,7 @@ public class ViajeActualFragment extends Fragment {
                     Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
                     intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
                     mActivity.startActivity(intent);
-                    /* OK
 
-            String uri = "https://www.google.com/maps/dir/?api=1&origin=19.376493,-99.254136&destination=19.755202,-99.177511&waypoints=19.366740, -99.238732%7C19.608414,-99.182855&travelmode=driving&dir_action=navigate";
-            Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
-            intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
-            startActivity(intent);
-                    *
-                     */
-                    /*
-                    Uri gmmIntentUri = Uri.parse("google.navigation:q=Cinépolis Patio Santa Fe");
-                    //Uri gmmIntentUri = Uri.parse("google.navigation:q=[Capgemini]&daddr=[Cinépolis Patio Santa Fe] to:[Campos Deportivos de Santa Lucía, Avenida Tamaulipas, Zona Federal, Ciudad de México, CDMX] to: [tacos el borrego viudo]");
-                    //Uri.parse("https://maps.google.ch/maps?saddr=[address1]&daddr=[address2] to:[address3] to: [address4]"));
-                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-                    mapIntent.setPackage("com.google.android.apps.maps");
-                    mActivity.startActivity(mapIntent);
-                    */
                 }
             });
 

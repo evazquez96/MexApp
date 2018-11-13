@@ -90,7 +90,7 @@ public class documentos extends Fragment {
     // namespace + metodo
     private static final String accionSoap = "http://tempuri.org/getInfoGeneral";
     // Fichero de definicion del servcio web
-    private static final String url = "https://app.mexamerik.com/mexapp/MexAppws.asmx";
+    private static final String url = "https://app.mexamerik.com/mexapp/MexAppws.asmx?";
     public  SoapPrimitive resultado;
     Context context = null;
     ProgressDialog pdialog = null;
@@ -257,8 +257,11 @@ try{
         Boolean bandera=true;
         try {
 
-            mandar();
-
+            //mandar();
+/*alia="MA1654";
+pru=100136;*/
+            alia=globalVariable.getUsuario().getUnidad();
+            pru=globalVariable.getUsuario().getId();
             SoapObject request = new SoapObject(namespace, Metodo);
             request.addProperty("aliasUnidad", alia);
             request.addProperty("id_tms", pru);

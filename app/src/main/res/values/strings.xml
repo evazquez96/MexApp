@@ -120,7 +120,7 @@
 
     <!--Tabs Viajes-->
     <string name="tab_viaje_curso">Actual</string>
-    <string name="tab_viaje_histrico">Finalizados</string>
+    <string name="tab_viaje_histrico">Bitacora</string>
     <string name="title_activity_bitacora">Norma NO 87</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_viajes_base">ViajesBase</string>
