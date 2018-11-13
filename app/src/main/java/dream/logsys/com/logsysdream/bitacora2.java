@@ -58,9 +58,9 @@ public class bitacora2 extends AppCompatActivity {
     // Metodo que queremos ejecutar en el servicio web
     private static final String Metodo = "getRegistroBitacora";
     // Namespace definido en el servicio web
-    private static final String namespace = "https://app.mexamerik.com";
+    private static final String namespace = "http://app.mexamerik.com";
     // namespace + metodo
-    private static final String accionSoap = "https://app.mexamerik.com/getRegistroBitacora";
+    private static final String accionSoap = "http://app.mexamerik.com/getRegistroBitacora";
     // Fichero de definicion del servcio web
     private static final String url = "https://app.mexamerik.com/bitacoradream/Service.asmx";
 
