@@ -57,6 +57,7 @@ public class RepDreamDashboard extends RepBase {
             Calendar cal = Calendar.getInstance(); // creates calendar
             java.util.Date dd;
             for (Dream d : data) {
+
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
                 formatter.setTimeZone(TimeZone.getTimeZone("Indian/Chagos"));
 

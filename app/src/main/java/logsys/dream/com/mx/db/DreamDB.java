@@ -454,9 +454,17 @@ res.close();
 
              String query = "select strftime('%d/%m/%Y - %H:%M',datetime(max(end_date)/1000,'unixepoch','utc')) AS Inicio ," +
                     "((end_date-start_date)/(1000*60)%60) as minutos,((end_date-start_date)/(1000*60*60)%24) as horas , max(datetime(end_date/1000,'unixepoch','localtime')) AS Inicio1" +
-                    " from Time_Table where end_date is not null and user_id= " + usuarioId;
+                    " from Time_Table where end_date is not null and user_id= " + usuarioId + " and tipo_actividad_id=1 order by start_date asc";
 
-
+/*
+            String query = "select strftime('%d/%m/%Y - %H:%M',datetime(max(end_date)/1000,'unixepoch','utc')) AS Inicio ," +
+                    "((end_date-start_date)/(1000*60)%60) as minutos,((end_date-start_date)/(1000*60*60)%24) as horas , max(datetime(end_date/1000,'unixepoch','localtime')) AS Inicio1" +
+                    " from Time_Table where end_date is not null and user_id= " + usuarioId + "and tipo_actividad_id=1 order by start_date asc";
+*/
+/*
+String query = "select id,((end_date-start_date)/(1000*60)%60) as minutos,((end_date-start_date)/(1000*60*60)%24) as horas " +
+                    " from Time_Table where user_id= " + usuarioId + " and tipo_actividad_id=1 order by start_date asc";
+ */
 
             Cursor res = this.getDataQuery(query);
             res.moveToFirst();
@@ -477,6 +485,7 @@ res.close();
             this.close();
         }catch(Exception ex)
         {
+            System.out.println("*************Test");
             ex.printStackTrace();
         }
         return  resultado== null? "N/A" : resultado;
@@ -492,9 +501,13 @@ res.close();
                     "((end_date-start_date)/(1000*60)%60) as minutos,((end_date-start_date)/(1000*60*60)%24) as horas " +
                     " from Time_Table where user_id= " + usuarioId;
              */
-
+/*
             String query = "select max(sql_id) as Id" +
-                    " from Time_Table where value='Sueño Mex App' and user_id= " + usuarioId;
+                    " from Time_Table where value='Sueño Mex App' and user_id= " + usuarioId + " order by end_date asc";
+*/
+            String query = "select max(sql_id) as Id" +
+                    " from Time_Table where value='Sueño Mex App' and user_id= " + usuarioId + " order by start_date asc";
+
 
             Cursor res = this.getDataQuery(query);
             res.moveToFirst();
@@ -504,6 +517,7 @@ res.close();
                 //resultado = res.getString(res.getColumnIndex("Inicio")) + "[" + String.format("%02d",res.getString(res.getColumnIndex("horas"))) + ":" + String.format("%02d",res.getString(res.getColumnIndex("minutos"))) + "]";
                 //resultado = res.getString(res.getColumnIndex("Inicio")) + "[" + String.format("%02d",res.getLong(res.getColumnIndex("horas"))) + ":" + String.format("%02d",res.getLong(res.getColumnIndex("minutos"))) + "]";
                 resultado = res.getLong(res.getColumnIndex("Id"));
+                System.out.println("*******************************print" + res.getColumnIndex("Id"));
                 res.moveToNext();
             }
             res.close();
@@ -525,9 +539,12 @@ res.close();
         String resultado = "N/A";
         try
         {
+            String query = "select id,((end_date-start_date)/(1000*60)%60) as minutos,((end_date-start_date)/(1000*60*60)%24) as horas " +
+                    " from Time_Table where user_id= " + usuarioId + " and tipo_actividad_id=1 order by start_date asc";
+            /*
             String query = "select ((end_date-start_date)/(1000*60)%60) as minutos,((end_date-start_date)/(1000*60*60)%24) as horas " +
                     " from Time_Table where user_id= " + usuarioId + " and value='Sueño Mex App' ";
-
+*/
             Cursor res = this.getDataQuery(query);
             res.moveToFirst();
 
@@ -576,6 +593,10 @@ res.close();
                 sueno.setId(res.getInt(res.getColumnIndex("id")));
                 sueno.setEnviado(res.getLong(res.getColumnIndex("enviado")));
 
+                try {
+                    System.out.println("::::::::::::::::obtenerSueno****:" + sdf.parse(res.getString(res.getColumnIndex("id"))));
+                } catch (Exception ex){}
+
                     if(res.getString(res.getColumnIndex("Inicio"))!=null)
                         sueno.setFechaInicio(sdf.parse(res.getString(res.getColumnIndex("Inicio"))));
                     //System.out.println("::::::::::::::::obtenerSueno:" + sdf.parse(res.getString(res.getColumnIndex("Inicio"))));
@@ -584,6 +605,62 @@ res.close();
                     if(res.getString(res.getColumnIndex("sql_id"))!=null)
                         sueno.setSql_id(res.getLong(res.getColumnIndex("sql_id")));
                     //System.out.println("::::::::::::::::obtenerSueno Fin:" + sdf.parse(res.getString(res.getColumnIndex("Fin"))));
+
+                res.moveToNext();
+            }
+
+
+            res.close();
+
+
+            this.close();
+        }catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        return  sueno;
+    }
+
+    public  Dream obtenerSuenoSQL(long id)
+    {
+        Dream sueno = null;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+        //sdf.setTimeZone(TimeZone.getTimeZone("America/Mexico_City"));
+        try
+        {
+            /*
+            String query = "select datetime(max(start_date)/1000,'unixepoch','localtime') AS Inicio," +
+                    " datetime(max(end_date)/1000,'unixepoch','localtime') AS Fin," +
+                    " value as comentarios,user_id,id,enviado,sql_id" +
+                    " from Time_Table where sql_id= " + id;
+*/
+            String query = "select datetime(start_date/1000,'unixepoch') AS Inicio," +
+                    " datetime(end_date/1000,'unixepoch') AS Fin," +
+                    " value as comentarios,user_id,id,enviado,sql_id" +
+                    " from Time_Table where id= " + id;
+            Cursor res = this.getDataQuery(query);
+            res.moveToFirst();
+
+            while(res.isAfterLast() == false){
+                sueno = new Dream();
+                sueno.setComentarios(res.getString(res.getColumnIndex("comentarios")));
+                sueno.setUsuarioId(res.getInt(res.getColumnIndex("user_id")));
+                sueno.setId(res.getInt(res.getColumnIndex("id")));
+                sueno.setEnviado(res.getLong(res.getColumnIndex("enviado")));
+
+                try {
+                    System.out.println("::::::::::::::::obtenerSueno****:" + sdf.parse(res.getString(res.getColumnIndex("id"))));
+                } catch (Exception ex){}
+
+                if(res.getString(res.getColumnIndex("Inicio"))!=null)
+                    sueno.setFechaInicio(sdf.parse(res.getString(res.getColumnIndex("Inicio"))));
+                //System.out.println("::::::::::::::::obtenerSueno:" + sdf.parse(res.getString(res.getColumnIndex("Inicio"))));
+                if(res.getString(res.getColumnIndex("Fin"))!=null)
+                    sueno.setFechaFin(sdf.parse(res.getString(res.getColumnIndex("Fin"))));
+                if(res.getString(res.getColumnIndex("sql_id"))!=null)
+                    sueno.setSql_id(res.getLong(res.getColumnIndex("sql_id")));
+                //System.out.println("::::::::::::::::obtenerSueno Fin:" + sdf.parse(res.getString(res.getColumnIndex("Fin"))));
 
                 res.moveToNext();
             }

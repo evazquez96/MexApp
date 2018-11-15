@@ -42,10 +42,12 @@ public class Viajes{
         String hola = viaje.getCitaCarga();
         destino = viaje.getDestino();
         List<viajeTO> list = new ArrayList<viajeTO>();
+        /*
         for (int i=0;i<viajes.length;i++) {
             System.out.println(viajes[i]);
 
         }
+        */
         for (viajeTO d : viajes) {
             list.add(d);
         }

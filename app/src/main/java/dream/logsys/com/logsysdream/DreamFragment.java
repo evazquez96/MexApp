@@ -19,6 +19,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AlertDialog;
 import android.text.format.Time;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -78,7 +79,7 @@ public class DreamFragment extends BaseFragment {
     private int minutos;
     private  long fin_milis;
 
-    private long _____inicio_id;
+    //private long _____inicio_id;
     long sleepMilliseconds;
 
 
@@ -390,7 +391,7 @@ int get_ViewResourceId() {
         }
 
         DreamDB te = new DreamDB(globalVariable);
-        _____inicio_id = te.obtenerIdUltimSueno(getUserId());
+        //_____inicio_id = te.obtenerIdUltimSueno(getUserId());
 
 
         param1 = paramsdb.get_Parametro("2",String.valueOf(getUserId()));
@@ -615,8 +616,29 @@ int get_ViewResourceId() {
 
             String result = "";
 
-            sueno = db.obtenerSueno(_____inicio_id);
+            //Log.d("Paco","Inicio Id::::::, Fin " +  _____inicio_id);
+            //sueno = db.obtenerSueno(_____inicio_id);
 
+
+            try {
+                param= paramsdb.get_Parametro("3",String.valueOf(getUserId()));
+
+                if(param == null)
+                    return false;
+            } catch(Exception ex)
+            {
+                ex.printStackTrace();
+                return false;
+            }
+
+
+            sueno = db.obtenerSuenoSQL(Integer.parseInt(param));
+
+try {
+    //System.out.println("***************Sueño" + sueno.getId()  + " ," + sueno.getSql_id() + "  - "+  _____inicio_id) ;
+}catch (Exception ex)          {}
+
+            Log.d("Paco","Inicio Id::::::, Fin " +sueno);
             sueno.setFechaFin(new Date(f_fin));
             result = r.enviarSueno(sueno);
 
@@ -641,6 +663,7 @@ int get_ViewResourceId() {
                 configurar_visibilidad();
                 dbParams.deleteParam(2);
                 dbParams.deleteParam(1);
+                dbParams.deleteParam(3);
                 //Added 20 -12
 
                 try {
@@ -650,6 +673,14 @@ int get_ViewResourceId() {
                     }
                 } catch(Exception ex) {
 
+                }
+
+                try {
+                    if(ring!=null)
+                        ring.stop();
+                } catch (Exception ex)
+                {
+                    ex.printStackTrace();
                 }
             } else {
 
@@ -811,9 +842,13 @@ int get_ViewResourceId() {
                 sueno.setUsuarioId(getUserId());
 
                 long registro_id= db.insertarSueno(sueno);
-                _____inicio_id =  db.obtenerSueno(registro_id).getSql_id(); //sueno.getSql_id();
+                //_____inicio_id =  db.obtenerSueno(registro_id).getSql_id(); //sueno.getSql_id();
+
+
+                //Log.d("Paco","Inicio Id::::::, iniciando " +  _____inicio_id);
 
                 sueno = db.obtenerSueno(registro_id);
+
 
                 String result = "";
                 if(registro_id!=-1)
@@ -828,8 +863,18 @@ int get_ViewResourceId() {
 
                         sueno.setEnviado(1);
 
+                        //System.out.println("***************Sueño" + sueno.getId()  + " ," + sueno.getSql_id() + "  - " + _____inicio_id) ;
+                        System.out.println(result.toString());
 
                         db.actualizarSueno(sueno);
+
+                        existe = paramsdb.existParam("3", getUserId());
+
+                        if (!existe)
+                            paramsdb.insertParam("3", String.valueOf(getUserId()), "id_sql", String.valueOf(sueno.getId()));
+                        else
+                            paramsdb.updateParam(3, String.valueOf(getUserId()), String.valueOf(sueno.getId()), "id_sql");
+
                     }
                     else {
 
