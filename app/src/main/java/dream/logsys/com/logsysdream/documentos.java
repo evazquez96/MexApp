@@ -432,7 +432,10 @@ int a=4+4;
 
                     }
                     catch(Exception e){
+                        Toast.makeText(context, "" + "!!No hay datos intentelo mas tarde¡¡", Toast.LENGTH_SHORT).show();  // el usuario no tiene ninguna app que pueda abrir pdfs
 
+
+                        pdialog.dismiss();
                         Log.e("JSONArrayError",e.getMessage());
                     }
                 } catch (Exception e) {
@@ -440,6 +443,7 @@ int a=4+4;
 
                 }
             }else{
+                pdialog.dismiss();
                 Log.e("ERROR", "Error al consumir el webService");
             }
         }

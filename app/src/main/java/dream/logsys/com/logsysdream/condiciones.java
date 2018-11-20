@@ -39,6 +39,7 @@ public class condiciones extends AppCompatActivity {
         if(ne == true){
             Intent nuevo= new Intent(condiciones.this,LoginActivity.class);
             startActivity(nuevo);
+            finish();
         }
 
         sig.setOnClickListener(new View.OnClickListener() {

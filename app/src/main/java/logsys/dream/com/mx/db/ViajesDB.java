@@ -59,14 +59,14 @@ public class ViajesDB extends DBHelper {
         contentValues.put("Origen", viaje.getOrigen());
         contentValues.put("Shipment", viaje.getShipment());
 
-        contentValues.put("Estatus", "Actual");
+       // contentValues.put("Estatus", "Actual");
 
         contentValues.put("oLongitud", viaje.getoLongitud());
         contentValues.put("oLatitud", viaje.getoLatitud());
         contentValues.put("dLongitud", viaje.getdLongitud());
         contentValues.put("dLatitud", viaje.getdLatitud());
         contentValues.put("Intermedios", viaje.getIntermedios());
-        //contentValues.put("Estatus", viaje.getEstatus());
+        contentValues.put("Estatus", viaje.getEstatus());
 
         contentValues.put("doLongitud", viaje.getDoLongitud());
         contentValues.put("doLatitud", viaje.getDoLatitud());
@@ -217,7 +217,7 @@ public class ViajesDB extends DBHelper {
             viaje.setDireccionDescarga(res.getString(res.getColumnIndex("Direccion_Descarga")));
             viaje.setOrigen(res.getString(res.getColumnIndex("Origen")));
             viaje.setShipment(res.getString(res.getColumnIndex("Shipment")));
-
+            viaje.setEstatus(res.getString(res.getColumnIndex("Estatus")));
             viaje.setoLatitud(res.getString(res.getColumnIndex("oLatitud")));
             viaje.setoLongitud(res.getString(res.getColumnIndex("oLongitud")));
             viaje.setdLatitud(res.getString(res.getColumnIndex("dLatitud")));

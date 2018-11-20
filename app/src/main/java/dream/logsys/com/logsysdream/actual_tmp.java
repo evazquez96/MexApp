@@ -49,7 +49,7 @@ public class actual_tmp extends Fragment {
     Context context = null;
     ProgressDialog pdialog = null;
     int pru;
-TextView header,solicitud,shitment,cpo,cliente,origin,destino,dir,ocita,dirdest,citdes;
+TextView header,solicitud,shitment,cpo,cliente,origin,destino,dir,ocita,dirdest,citdes,estatus;
 ImageView gmap1,gmaps2;
 String fecha,ssolic,sclient,ssshitmen,scpo,sorigen,sdeestino,sdirori,sccarga,sdirdesty,scitcar,sconve,inter,olat,olog,dlat,dlog,dinter;
     private static MainActivity mActivity;
@@ -65,7 +65,7 @@ String fecha,ssolic,sclient,ssshitmen,scpo,sorigen,sdeestino,sdirori,sccarga,sdi
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_actual_tmp, container, false);
         mActivity = (MainActivity) getActivity();
-
+        estatus=view.findViewById(R.id.status);
         header=view.findViewById(R.id.tvheader);
         solicitud=view.findViewById(R.id.tvheader1);
         shitment=view.findViewById(R.id.tvshipment1);
@@ -200,6 +200,7 @@ String format,form2,for3;
             sccarga=car.getString("CitaCarga");
                 sdirdesty=car.getString("DireccionDescarga");
                 scitcar=car.getString("CitaDescarga");
+
                 olat=car.getString("O_Latitud");
                 olog=car.getString("O_Longitud");
                 dlat=car.getString("D_Latitud");
@@ -218,6 +219,7 @@ String format,form2,for3;
                 solicitud.setText("Solicitud "+ssolic);
              shitment.setText(""+car.getString("Shipment"));
          cliente.setText(car.getString("Cliente"));
+         estatus.setText(car.getString("Estatus"));
           origin.setText(sorigen);
           cpo.setText(car.getString("CartaPorte"));
                 destino.setText(sdeestino);

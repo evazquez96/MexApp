@@ -165,7 +165,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-        //do nothing
+        Intent nav = new Intent(MainActivity.this, MainActivity.class);
+        startActivity(nav);
+        finish();
     }
 
 }

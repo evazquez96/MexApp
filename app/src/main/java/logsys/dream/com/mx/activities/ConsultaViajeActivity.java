@@ -24,7 +24,7 @@ public class ConsultaViajeActivity extends AppCompatActivity {
     public TextView tvdd;
     public TextView tvorigen;
     public TextView tvshipment;
-
+    public TextView Estatus;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,8 +39,6 @@ public class ConsultaViajeActivity extends AppCompatActivity {
             viajeTO viaje = db.obtenerViaje(viajeId);
             Log.d("::::::::::::::::::::",viaje.toString());
             this.setTitle("Viaje");
-
-
             img_navegar = findViewById(R.id.img_navegar);
             tvsolicitud = findViewById(R.id.tvheader1);
             tvcitacarga = findViewById(R.id.tvcitacarga1);
@@ -53,7 +51,7 @@ public class ConsultaViajeActivity extends AppCompatActivity {
             tvorigen = findViewById(R.id.tvorigentmp1);
             tvshipment = findViewById(R.id.tvshipment1);
             tvcliente = findViewById(R.id.tvcliente1);
-
+            Estatus= findViewById(R.id.status);
 
             tvsolicitud.setText("Solicitud: "+ viaje.getNumeroSolicitud());
             tvcitacarga.setText(viaje.getCitaCarga());
@@ -66,7 +64,7 @@ public class ConsultaViajeActivity extends AppCompatActivity {
             tvorigen.setText(viaje.getOrigen());
             tvshipment.setText(viaje.getShipment());
             tvcliente.setText(viaje.getCliente());
-
+             Estatus.setText(viaje.getEstatus());
         }
     }
 }
