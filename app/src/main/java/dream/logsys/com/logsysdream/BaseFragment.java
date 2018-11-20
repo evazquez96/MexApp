@@ -7,6 +7,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -32,6 +35,7 @@ import logsys.dream.com.mx.ws.Repos.LoginRepo_Ws;
 public abstract class BaseFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
 
     public static Vibrator mVibrator;
+    public static MediaPlayer ring = null;
 
     protected SwipeRefreshLayout mswipeRefreshLayout;
     protected ProgressDialog progress;
@@ -191,6 +195,14 @@ public abstract class BaseFragment extends Fragment implements SwipeRefreshLayou
         }
     }
 
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        if ( progress!=null && progress.isShowing() ){
+            progress.cancel();
+        }
+    }
+
     //public Vibrator mVibrator;
 
     public void enviarNotificacion(String msg,int idFragmento,String titulo,boolean autoCancel,String txt,boolean vibrar)
@@ -204,6 +216,27 @@ public abstract class BaseFragment extends Fragment implements SwipeRefreshLayou
             mVibrator.vibrate(pattern, 0);
         }
 
+        /*
+        Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        Ringtone r = RingtoneManager.getRingtone(MainActivity.sContext.getApplicationContext(), notification);
+        r.play();
+*/
+
+try
+{
+        ring = MediaPlayer.create(MainActivity.sContext.getApplicationContext(),R.raw.gallo);
+        ring.setLooping(true);
+        //ring.setVolume(90f,100f);
+
+        AudioManager audio = (AudioManager) MainActivity.sContext.getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
+
+        audio.setStreamVolume(AudioManager.STREAM_MUSIC,audio.getStreamMaxVolume(AudioManager.STREAM_MUSIC),0);
+
+        ring.start();
+} catch (Exception ex)
+{
+    ex.printStackTrace();
+}
 
         Intent intent = new Intent(MainActivity.sContext, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
