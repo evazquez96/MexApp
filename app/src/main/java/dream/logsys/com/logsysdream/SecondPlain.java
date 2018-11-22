@@ -594,32 +594,31 @@ public class SecondPlain extends Service {
 
     }
 
-    public String sh="TRANSPORTES MEX AMERI K, S.A. DE C.V.";
-    public String shl="Calle Mariano Escobedo S/N Colonia: Mariano Escobedo, Tultitlán, Estado de México, C.P. 54946";
+    private String sh="TRANSPORTES MEXAMERIK, S.A. DE C.V.";
+    private String shl="Calle Mariano Escobedo S/N Colonia: " +"\n"+
+            "Mariano Escobedo, Tultitlán, Estado de México, " +"\n"+
+            "C.P. 54946";
+
     protected FrescoApplication globalVariable = (FrescoApplication) LoginActivity.getAppContext();
     ViajesDB db = new ViajesDB(LoginActivity.getAppContext());
 
     public void createarch2() throws DocumentException {
 
-        try {
-            viajeTO viaje = db.obtenerActual();
-            Viajes viaj = new Viajes();
-        } catch(Exception e) {
 
-        }
 
-        Viajes viajess = new Viajes();
+
         String nombre=globalVariable.getUsuario().getNombre();
         String uni=globalVariable.getUsuario().getUnidad();
         String fecha=new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new java.util.Date());
         String origen=ori;
         String destuno=desty;
        String solicitud=soli;
-        template2 tem= new template2(getApplicationContext());
+        Templatepdf tem= new Templatepdf(getApplicationContext());
+        tem.createfile("respaldo");
         tem.opendocument();
-        tem.lines(fecha);
+        tem.lines("Fecha de consulta: "+fecha);
         tem.addMetaData("Bitacora","NOM 87","Mexapp");
-        tem.addtitle("Bitacora NOM 87","MexApp","");
+        tem.addtitle(sh,"NORMA 87      ",shl);
         tem.addparagraph(sh);
         tem.addparagraph(shl);
         tem.lines("Datos del Operado");
@@ -637,15 +636,20 @@ public class SecondPlain extends Service {
         tem.addparagraph("Ultimas 05:30hrs  "+hoursMinutes4+"  activo"+hoursMinutes3+"  Descanso");
         tem.lines("Detalles");
         String e[] = getEstado();
+        tem.addparagraph1("Eventos");
         for (int i =0;i<e.length;i++){
 
-            tem.addparagraph(horitas[i]+" - "+horitas[i+1]+" "+e[i]);
+
+            tem.addparagraph1("Fecha Inicio: "+horitas[i]+" - "+" Fecha Fin:  "+horitas[i+1]+" "+e[i]);
             System.out.println(horitas[i]+" - "+horitas[i+1]+" "+e[i]);
 
         }
+        tem.lines("");
+        tem.addparagraph("");
+        tem.addparagraph("");
+
 
         tem.closedocument();
-
     }
 
     public String[] getEstado() {

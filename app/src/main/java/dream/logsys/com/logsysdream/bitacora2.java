@@ -842,14 +842,9 @@ public class bitacora2 extends AppCompatActivity {
 
 
     public void createarch() throws DocumentException {
-
-
-        Viajes viaj = new Viajes();
-        ViajesDB db = new ViajesDB(LoginActivity.getAppContext());
-        viajeTO viaje = db.obtenerActual();
+        String fecha2=new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new java.util.Date());
         String names=globalVariable.getUsuario().getNombre();
         String unio=globalVariable.getUsuario().getUnidad();
-        Viajes viajes = new Viajes();
         String solidas=soli;
         String or=ori;
         String desa=desty;
@@ -863,11 +858,11 @@ public class bitacora2 extends AppCompatActivity {
         String type = tipop;
 
         Templatepdf tem=new Templatepdf(getApplicationContext());
-        tem.opendocument();
-        tem.lines(fecha);
+        tem.createfile(fecha2);
+        tem.opendocument();d
+        tem.lines("Fecha de consulta: "+fecha2);
         tem.addMetaData("Bitacora","NOM 87","Mexapp");
-        tem.addtitle(sh,shl,"NORMA 87    ");
-
+        tem.addtitle(sh,"NORMA 87      ",shl);
         tem.lines("Datos del Operado");
         tem.addparagraph("Operado:  "+names);
         tem.addparagraph("Licencia:  "+licenciado+"  Vigencia:  "+vigencias);
@@ -879,16 +874,21 @@ public class bitacora2 extends AppCompatActivity {
         tem.addparagraph("Origen:  "+or);
         tem.addparagraph("Destino:  "+desa);
         tem.lines("Descansos");
-        tem.addparagraph("Ultimas 24:00 Hrs: "+"Activo:  "+a1+"  Inactivo:  "+i1);
-        tem.addparagraph("Ultimas 05:30 Hrs: "+"Activo:  "+a2+"  Inactivo:  "+i2);
+        tem.addparagraph("Ultimas 24:00 Hrs: "+"Activo:  "+a1+"  Descanso:  "+i1);
+        tem.addparagraph("Ultimas 05:30 Hrs: "+"Activo:  "+a2+"  Descanso:  "+i2);
         tem.lines("Detalles");
+        tem.addparagraph1("Eventos");
         String e[] = getEstado();
         for (int i =0;i<e.length;i++){
 
-            tem.addparagraph(horitas[i]+" - "+horitas[i+1]+" "+e[i]);
+            tem.addparagraph1("Fecha Inicio: "+horitas[i]+" - "+" Fecha Fin:  "+horitas[i+1]+" "+e[i]);
             System.out.println(horitas[i]+" - "+horitas[i+1]+" "+e[i]);
 
         }
+        tem.lines("");
+        tem.addparagraph("");
+        tem.addparagraph("");
+
 
         tem.closedocument();
 

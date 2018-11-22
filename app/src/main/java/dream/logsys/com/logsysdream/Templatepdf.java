@@ -45,7 +45,7 @@ public class Templatepdf {
 
 
     public void opendocument(){
-        createfile();
+
         try {
 
             document=new Document(PageSize.A4);
@@ -58,15 +58,14 @@ public class Templatepdf {
 
     }
 
-    private void createfile(){
-        String names=new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new java.util.Date());
-        String m=names;
+    public void createfile(String nombres){
+
         File folder= new File(Environment.getExternalStorageDirectory().toString(),"PDF");
         //File folder= new File(context.getFilesDir().toString(),"PDF");
 
         //if(!folder.exists())
        folder.mkdirs();
-        pdf2=new File(folder,m+".pdf");
+        pdf2=new File(folder,nombres+".pdf");
 
     }
     public void closedocument(){
@@ -85,8 +84,8 @@ public class Templatepdf {
         try {
             paragraph=new Paragraph();
             addChildp(new Paragraph(title,ftitle));
-            addChildp(new Paragraph(subtitle,fht));
-            addChildp(new Paragraph(date,fstitle));
+            addChildp(new Paragraph(subtitle,fstitle));
+            addChildp(new Paragraph(date,fht));
 
             paragraph.setSpacingAfter(30);
 
@@ -107,6 +106,22 @@ public class Templatepdf {
             paragraph= new Paragraph(text,ftext);
             paragraph.setSpacingAfter(5);
             paragraph.setSpacingBefore(5);
+            document.add(paragraph);
+
+
+        }catch (Exception e){
+            Log.e("addparagraph",e.toString());
+        }
+
+    }
+    public void addparagraph1(String text){
+
+        ftext.setColor(73,103,141);
+        try {
+            paragraph= new Paragraph(text,ftext);
+            paragraph.setSpacingAfter(5);
+            paragraph.setSpacingBefore(5);
+            paragraph.setAlignment(Element.ALIGN_LEFT);
             document.add(paragraph);
 
 
@@ -154,7 +169,7 @@ public class Templatepdf {
 
         fht1.setColor(128,0,0);
         Paragraph p = new Paragraph(texto,fht1);
-        p.setAlignment(Element.ALIGN_CENTER);
+        p.setAlignment(Element.ALIGN_LEFT);
         DottedLineSeparator dottedline = new DottedLineSeparator();
         dottedline.setOffset(-2);
         dottedline.setGap(2f);
