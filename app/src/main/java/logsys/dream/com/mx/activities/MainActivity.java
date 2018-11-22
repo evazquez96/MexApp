@@ -15,6 +15,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,7 +51,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
-
+        WebView myWebView = (WebView) findViewById(R.id.webvew);
+        WebSettings webSettings = myWebView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        myWebView.setWebViewClient(new WebViewClient());
+        myWebView.loadUrl("http://mexamerik.com/");
 
         TextView tv = (TextView)headerView.findViewById(R.id.txt_globaluser);
         final FrescoApplication globalVariable = (FrescoApplication) getApplicationContext();
@@ -79,23 +86,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return;
 
 
-        BaseFragment fragment = new InicioFragment();
+       /* BaseFragment fragment = new InicioFragment();*/
 
         Intent intent = getIntent();
 
         if(intent!=null && intent.getExtras()!=null)
         {
-            int fragmentId = intent.getIntExtra("fragmento",1);
+        /*    int fragmentId = intent.getIntExtra("fragmento",1);
             if( fragmentId==1)
                 fragment = new ViajeFragment();
             else if(fragmentId==2)
-                fragment = new DreamFragment();
+                fragment = new DreamFragment();*/
         }
 
-
+/*
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.mainFrame, fragment);
-        ft.commitNow();
+        ft.commitNow();*/
     }
 
     private Menu menu;

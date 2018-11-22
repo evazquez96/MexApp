@@ -118,10 +118,11 @@ public class LoginActivity extends AppCompatActivity {//implements LoaderCallbac
 // sim = sim.substring(sim.indexOf('+')+3);       //descomentar esta linea y comentar la linea 95
         //hardcodeado
 //sim="5551399925";
-       sim="5525647774 ";
- //sim = "5530316921";//forlan
+     //sim="5525647774";ivan
+       // sim="5551399925";//paola reyes
+ sim = "5530316921";//forlan
 //sim = "5555071692";//Pablo sanches Rebolledo
-// sim = "4422391223";//Heriberto Rico Hernandez
+//sim = "4422391223";//Heriberto Rico Hernandez
  //sim = "5563187021";
 
         Log.d("LoginActivity","::::::::::::::::::::::::::::: #teléfono" + sim);

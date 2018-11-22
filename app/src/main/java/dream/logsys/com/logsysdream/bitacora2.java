@@ -5,7 +5,9 @@ package dream.logsys.com.logsysdream;
  */
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -716,16 +718,17 @@ public class bitacora2 extends AppCompatActivity {
                     int sum12=2+2;
 
 
-
+                    pdialog.dismiss();
 
                 }
                 catch(Exception e){
-
+                    pdialog.dismiss();
                     Log.e("JSONArrayError",e.getMessage());
                 }
             }
             else{
                 Log.e("ERROR", "Error al consumir el webService");
+                pdialog.dismiss();
             }
         }
 
@@ -733,6 +736,8 @@ public class bitacora2 extends AppCompatActivity {
 
 
     }
+    ProgressDialog pdialog = null;
+    Context context = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -744,11 +749,12 @@ public class bitacora2 extends AppCompatActivity {
         uni=(TextView)findViewById(R.id.Unidad);
         uni=(TextView)findViewById(R.id.Unidad);
         operador=(TextView)findViewById(R.id.Oper);
-         x=(LinearLayout)findViewById(R.id.cont);
+        context = this;
         try {
           fecha();
           getunidad();
           uni.setText(alia);
+            pdialog = ProgressDialog.show(context, "", "Cargando Datos por favor espere...", true);
           asyncBitacora b = new asyncBitacora();
           b.execute();
          asyncdocuments c = new asyncdocuments();
@@ -756,10 +762,7 @@ public class bitacora2 extends AppCompatActivity {
           getoperador();
           operador.setText(globalVariable.getUsuario().getNombre());
           getviaje();
-          progreso();
 
-
-        //  x.setVisibility(View.GONE);
 
       }catch (Exception e){
           e.printStackTrace();
@@ -832,8 +835,10 @@ public class bitacora2 extends AppCompatActivity {
 
     }
     private String[]header={"Evento","Ultimas 24:00hrs","Ultimas 5:00hrs"};
-    private String sh="TRANSPORTES MEX AMERI K, S.A. DE C.V.";
-    private String shl="Calle Mariano Escobedo S/N Colonia: Mariano Escobedo, Tultitlán, Estado de México, C.P. 54946";
+    private String sh="TRANSPORTES MEXAMERIK, S.A. DE C.V.";
+    private String shl="Calle Mariano Escobedo S/N Colonia: " +"\n"+
+            "Mariano Escobedo, Tultitlán, Estado de México, " +"\n"+
+            "C.P. 54946";
 
 
     public void createarch() throws DocumentException {
@@ -861,10 +866,8 @@ public class bitacora2 extends AppCompatActivity {
         tem.opendocument();
         tem.lines(fecha);
         tem.addMetaData("Bitacora","NOM 87","Mexapp");
-        tem.addtitle("Bitacora NOM 87","MexApp","");
-        tem.lines("Datos de la Empresa");
-        tem.addparagraph(sh);
-        tem.addparagraph(shl);
+        tem.addtitle(sh,shl,"NORMA 87    ");
+
         tem.lines("Datos del Operado");
         tem.addparagraph("Operado:  "+names);
         tem.addparagraph("Licencia:  "+licenciado+"  Vigencia:  "+vigencias);
@@ -929,49 +932,7 @@ public class bitacora2 extends AppCompatActivity {
         }
     }
 
-    private static int progress;
-    private ProgressBar progressBar;
-    private int progressStatus = 0;
-    private Handler handler = new Handler();
-    public void progreso(){
-        x=(LinearLayout)findViewById(R.id.cont);
-        progress = 0;
-        x.setVisibility(View.VISIBLE);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar3);
-        progressBar.setMax(50);
-        progressBar.getIndeterminateDrawable().setColorFilter(Color.BLUE, PorterDuff.Mode.SRC_IN);
 
-        new Thread(new Runnable() {
-            public void run() {
-                while (progressStatus < 50) {
-                    progressStatus = doSomeWork();
-                    handler.post(new Runnable() {
-                        public void run() {
-                            progressBar.setProgress(progressStatus);
-                        }
-                    });
-                }
-                handler.post(new Runnable() {
-                    @SuppressLint("WrongConstant")
-                    public void run() {
-                        // ---0 - VISIBLE; 4 - INVISIBLE; 8 - GONE---
-                        progressBar.setVisibility(8);
-                        x.setVisibility(View.GONE);
-                    }
-                });
-            }
 
-            private int doSomeWork() {
-                try {
-                    // ---simulate doing some work---
-                    Thread.sleep(50);
-
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                return ++progress;
-            }
-        }).start();
-    }
 
 }

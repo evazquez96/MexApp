@@ -1,12 +1,15 @@
 package dream.logsys.com.logsysdream;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.graphics.pdf.PdfDocument;
 import android.os.Environment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
@@ -29,10 +32,11 @@ public class Templatepdf {
     private Document document;
     private PdfWriter pdfWriter;
     private Paragraph paragraph;
-    private Font ftitle=new Font(Font.FontFamily.TIMES_ROMAN,22,Font.BOLDITALIC);
-    private Font fstitle=new Font(Font.FontFamily.TIMES_ROMAN,22,Font.BOLDITALIC);
-    private Font ftext=new Font(Font.FontFamily.TIMES_ROMAN,15,Font.BOLD);
-    private Font fht=new Font(Font.FontFamily.TIMES_ROMAN,15,Font.BOLD);
+    private Font ftitle=new Font(Font.FontFamily.TIMES_ROMAN,20,Font.BOLDITALIC);
+    private Font fstitle=new Font(Font.FontFamily.TIMES_ROMAN,24,Font.BOLDITALIC);
+    private Font ftext=new Font(Font.FontFamily.TIMES_ROMAN,15);
+    private Font fht=new Font(Font.FontFamily.TIMES_ROMAN,12);
+    private Font fht1=new Font(Font.FontFamily.TIMES_ROMAN,16,Font.BOLD);
 
     public Templatepdf(Context context) {
 
@@ -75,12 +79,14 @@ public class Templatepdf {
         document.addAuthor(author);
     }
     public void addtitle(String title,String subtitle,String date){
-
+        ftitle.setColor(191,147,13);//(191,147,13);
+        fstitle.setColor(128,0,0);
+        fht.setColor(4,46,94);
         try {
             paragraph=new Paragraph();
             addChildp(new Paragraph(title,ftitle));
-            addChildp(new Paragraph(subtitle,fstitle));
-            addChildp(new Paragraph(date,fht));
+            addChildp(new Paragraph(subtitle,fht));
+            addChildp(new Paragraph(date,fstitle));
 
             paragraph.setSpacingAfter(30);
 
@@ -92,7 +98,7 @@ public class Templatepdf {
         }
     }
     private void addChildp(Paragraph childparagraph){
-        childparagraph.setAlignment(com.itextpdf.text.Element.ALIGN_CENTER);
+        childparagraph.setAlignment(Element.ALIGN_RIGHT);
         paragraph.add(childparagraph);
 
     }
@@ -145,14 +151,35 @@ public class Templatepdf {
 
     }
     public void lines(String texto) throws DocumentException {
-        Paragraph p = new Paragraph(texto);
-        p.getAlignment();
+
+        fht1.setColor(128,0,0);
+        Paragraph p = new Paragraph(texto,fht1);
+        p.setAlignment(Element.ALIGN_CENTER);
         DottedLineSeparator dottedline = new DottedLineSeparator();
         dottedline.setOffset(-2);
         dottedline.setGap(2f);
         p.add(dottedline);
         document.add(p);
-    } public void imagenes() throws IOException, BadElementException {
+    }
+
+
+
+    public void imagenes()  throws IOException, DocumentException {
+        String hola;
+        Drawable image  = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.logo_mexamerik);
+        hola= String.valueOf(image);
+        Image imagen = Image.getInstance(image.toString());
+        imagen.setAlignment(Element.ALIGN_CENTER);
+        document.add(imagen);
+        imagen.setAbsolutePosition(150f, 650f);
+        imagen.setAbsolutePosition(0f, 0f);
+
+    }
+    public  void titulos(String texto)throws DocumentException{
+        fstitle.setColor(191,147,13);
+        Paragraph p = new Paragraph(texto,fht1);
+        p.setAlignment(Element.ALIGN_LEFT);
+        document.add(p);
 
     }
 
