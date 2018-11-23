@@ -171,6 +171,30 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
+                        android:textColor="#042E5E"
+                        android:background="@drawable/ev1"
+                        android:textSize="11dp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Grupo: "
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/Team"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
                         android:background="@drawable/ev1"
                         android:textSize="11dp" />
 
@@ -231,7 +255,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="No. IMS: "
+                        android:text="No. IMSS: "
                         android:textStyle="bold" />
 
                     <TextView
@@ -406,14 +430,14 @@
                         android:background="@drawable/ev1"
                         android:layout_height="match_parent"
                         android:text=" Póliza de seguro "
-                        android:textColor="@color/azul"
+                        android:textColor="#042E5E"
                         android:textStyle="bold" />
                     <TextView
                         android:id="@+id/POLIZASEGURO"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:background="@drawable/ev1"
                         android:layout_height="match_parent"
-                        android:text=" "
+                        android:text="    ver poliza "
                         android:textColor="#042E5E"
                         android:textStyle="bold" />
 
