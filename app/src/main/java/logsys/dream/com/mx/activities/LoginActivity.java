@@ -35,6 +35,7 @@ import logsys.dream.com.mx.repos.RepViajes;
 import logsys.dream.com.mx.startup.FrescoApplication;
 import logsys.dream.com.mx.ws.Repos.LoginRepo_Ws;
 
+import static android.Manifest.permission.CALL_PHONE;
 import static android.Manifest.permission.INTERNET;
 import static android.Manifest.permission.READ_PHONE_STATE;
 import static android.Manifest.permission.READ_SMS;
@@ -120,8 +121,8 @@ public class LoginActivity extends AppCompatActivity {//implements LoaderCallbac
 //sim="5551399925";
      //sim="5525647774";ivan
        // sim="5551399925";//paola reyes
- sim = "5530316921";//forlan
-//sim = "5555071692";//Pablo sanches Rebolledo
+// sim = "5530316921";//forlan
+sim = "5555071692";//Pablo sanches Rebolledo
 //sim = "4422391223";//Heriberto Rico Hernandez
  //sim = "5563187021";
 
@@ -139,7 +140,8 @@ public class LoginActivity extends AppCompatActivity {//implements LoaderCallbac
                     {       WRITE_EXTERNAL_STORAGE,
                             READ_SMS,
                             READ_PHONE_STATE,
-                            INTERNET
+                            INTERNET,CALL_PHONE
+
                     }, RequestPermissionCode);
         }
     }

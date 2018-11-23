@@ -859,7 +859,7 @@ public class bitacora2 extends AppCompatActivity {
 
         Templatepdf tem=new Templatepdf(getApplicationContext());
         tem.createfile(fecha2);
-        tem.opendocument();d
+        tem.opendocument();
         tem.lines("Fecha de consulta: "+fecha2);
         tem.addMetaData("Bitacora","NOM 87","Mexapp");
         tem.addtitle(sh,"NORMA 87      ",shl);
@@ -888,9 +888,7 @@ public class bitacora2 extends AppCompatActivity {
         tem.lines("");
         tem.addparagraph("");
         tem.addparagraph("");
-
-
-        tem.closedocument();
+ tem.closedocument();
 
     }
 

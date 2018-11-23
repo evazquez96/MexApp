@@ -146,13 +146,16 @@ public class documentos extends Fragment {
         tell.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*  try{
-                 *//* Intent i = new Intent(Intent.ACTION_CALL);
-                i.setData(Uri.parse(telcontac));
-                startActivity(i);
-                }catch (Exception e){*//*
+                  try{
+    String llamada;
+    llamada=tell.getText().toString();
+                      Intent i = new Intent(Intent.ACTION_CALL);
+                      i.setData(Uri.parse("tel:"+llamada));
+                      startActivity(i);
+                }catch (Exception e)
+                  {
 
-            }*/
+            }
             }});
 
         userLicencia.setOnClickListener(new View.OnClickListener() {
