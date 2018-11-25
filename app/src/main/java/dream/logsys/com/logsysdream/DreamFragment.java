@@ -71,7 +71,7 @@ public class DreamFragment extends BaseFragment {
 
     private PostTaskSuenoAsincrono mAuthTaskSendDream = null;
     private static final int WAKE_UP_CALL = 0;
-
+//1 fecha inicio, 2=> tiempo dormir, 0  usuario, 3 => id sql
 
     private Chronometer chrono_ui;
 
@@ -377,7 +377,7 @@ int get_ViewResourceId() {
         {
             ex.printStackTrace();
         }
-
+//1 fecha inicio, 2=> tiempo dormir, 0  usuario, 3 => id sql
         String param = null;
         try {
             param= paramsdb.get_Parametro("1",String.valueOf(getUserId()));
@@ -389,10 +389,66 @@ int get_ViewResourceId() {
             ex.printStackTrace();
             return;
         }
-
         DreamDB te = new DreamDB(globalVariable);
-        //_____inicio_id = te.obtenerIdUltimSueno(getUserId());
+boolean continuar = true;
+        //Validar si el sueño actual sigue activo
+        try {
+            param= paramsdb.get_Parametro("3",String.valueOf(getUserId()));
 
+            if(param == null) {
+                continuar = false;
+            }
+            Dream _dream = te.obtenerSuenoSQL(Integer.parseInt(param));
+            if(_dream==null)
+                continuar = false;
+            if(_dream !=null && _dream.getFechaFin()!=null)
+                continuar = false;
+            if(!continuar) {
+                ParamsDB dbParams = new ParamsDB(globalVariable);
+                LoginRepo_Ws.s_iniciado=false;
+                configurar_visibilidad();
+                dbParams.deleteParam(2);
+                dbParams.deleteParam(1);
+                dbParams.deleteParam(3);
+                //Added 20 -12
+
+                try {
+                    Vibrator mVibrator = BaseFragment.mVibrator;
+                    if (mVibrator != null) {
+                        mVibrator.cancel();
+                    }
+                } catch(Exception ex) {
+
+                }
+
+                try {
+                    if(ring!=null)
+                        ring.stop();
+                } catch (Exception ex)
+                {
+                    ex.printStackTrace();
+                }
+                return;
+            }
+        } catch(Exception ex)
+        {
+            ex.printStackTrace();
+            return;
+        }
+
+
+
+        //_____inicio_id = te.obtenerIdUltimSueno(getUserId());
+        try {
+            param= paramsdb.get_Parametro("1",String.valueOf(getUserId()));
+
+            if(param == null)
+                return;
+        } catch(Exception ex)
+        {
+            ex.printStackTrace();
+            return;
+        }
 
         param1 = paramsdb.get_Parametro("2",String.valueOf(getUserId()));
         sleepMilliseconds =0;
@@ -631,7 +687,7 @@ int get_ViewResourceId() {
                 return false;
             }
 
-
+            Log.d("Paco","Inicio Id::::::, Fin " +param);
             sueno = db.obtenerSuenoSQL(Integer.parseInt(param));
 
 try {

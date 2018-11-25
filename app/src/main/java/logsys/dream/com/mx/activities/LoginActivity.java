@@ -120,10 +120,10 @@ public class LoginActivity extends AppCompatActivity {//implements LoaderCallbac
         //hardcodeado
 //sim="5551399925";
      //sim="5525647774";ivan
-       // sim="5551399925";//paola reyes
+        sim="5551399925";//paola reyes
 // sim = "5530316921";//forlan
 //sim = "5555071692";//Pablo sanches Rebolledo
-sim = "5530165296";//mario peña hr
+//sim = "5530165296";//mario peña hr
       //  sim = "5521016727";//ruben reyes
 //sim = "4422391223";//Heriberto Rico Hernandez
  //sim = "5563187021";
@@ -264,7 +264,7 @@ sim = "5530165296";//mario peña hr
 
             if (success) {
                 ParamsDB dbParams= new ParamsDB(globalVariable);
-                dbParams.mergeParam("3",globalVariable.getUsuario().getId()+"","usuarioLogeado",globalVariable.getUsuario().getId()+"");
+                dbParams.mergeParam("0",globalVariable.getUsuario().getId()+"","usuarioLogeado",globalVariable.getUsuario().getId()+"");
 
 
                 RepViajes rep = new RepViajes();
@@ -276,7 +276,7 @@ sim = "5530165296";//mario peña hr
                 Toast.makeText(LoginActivity.this, resultado, Toast.LENGTH_LONG).show();
                 globalVariable.setUsuario(null);
                 ParamsDB dbParams = new ParamsDB(globalVariable.getApplicationContext());
-                dbParams.deleteParam(3);
+                dbParams.deleteParam(0);
                 resp();
             }
         }
