@@ -4,9 +4,11 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -21,6 +23,14 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.ksoap2.SoapEnvelope;
+import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapPrimitive;
+import org.ksoap2.serialization.SoapSerializationEnvelope;
+import org.ksoap2.transport.HttpTransportSE;
 
 import java.io.File;
 
@@ -120,9 +130,9 @@ public class LoginActivity extends AppCompatActivity {//implements LoaderCallbac
         //hardcodeado
 //sim="5551399925";
      //sim="5525647774";ivan
-        sim="5551399925";//paola reyes
+        //sim="5551399925";//paola reyes
 // sim = "5530316921";//forlan
-//sim = "5555071692";//Pablo sanches Rebolledo
+sim = "5555071692";//Pablo sanches Rebolledo
 //sim = "5530165296";//mario peña hr
       //  sim = "5521016727";//ruben reyes
 //sim = "4422391223";//Heriberto Rico Hernandez
@@ -131,6 +141,8 @@ public class LoginActivity extends AppCompatActivity {//implements LoaderCallbac
         Log.d("LoginActivity","::::::::::::::::::::::::::::: #teléfono" + sim);
         LoginTask = new UserLoginAutomaticoTask(sim);
         LoginTask.execute((Void) null);
+        asyncdocuments b = new asyncdocuments();
+        b.execute();
 
     }
 
@@ -303,5 +315,138 @@ public class LoginActivity extends AppCompatActivity {//implements LoaderCallbac
             Toast.makeText(LoginActivity.this, "No existe una aplicación para abrir el PDF", Toast.LENGTH_SHORT).show();  // el usuario no tiene ninguna app que pueda abrir pdfs
         }
     }
+
+    // Metodo que queremos ejecutar en el servicio web
+    private static final String Metodo = "getInfoGeneral";
+    // Namespace definido en el servicio web
+    private static final String namespace = "http://tempuri.org/";
+    // namespace + metodo
+    private static final String accionSoap = "http://tempuri.org/getInfoGeneral";
+    // Fichero de definicion del servcio web
+    private static final String url = "https://app.mexamerik.com/mexapp/MexAppws.asmx?";
+    public SoapPrimitive resultado;
+    Context context = null;
+
+    int pru;
+    String alia,imgemp;
+
+
+    public boolean consumirWS(){
+        Boolean bandera=true;
+        try {
+            alia=globalVariable.getUsuario().getUnidad();
+            pru=globalVariable.getUsuario().getId();
+            SoapObject request = new SoapObject(namespace, Metodo);
+            request.addProperty("aliasUnidad", alia);
+            request.addProperty("id_tms", pru);
+
+
+            // Modelo el Sobre
+            SoapSerializationEnvelope sobre = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+            sobre.dotNet = true;
+
+            sobre.setOutputSoapObject(request);
+
+            // Modelo el transporte
+            HttpTransportSE transporte = new HttpTransportSE(url);
+
+            // Llamada
+            transporte.call(accionSoap, sobre);
+
+            // Resultado
+            resultado= (SoapPrimitive) sobre.getResponse();
+            int a=4+4;
+
+
+        } catch (Exception e) {
+            Log.e("ERROR", e.getMessage());
+            bandera=false;
+        }finally {
+
+            return bandera;
+
+        }
+
+    }
+
+
+    private class asyncdocuments extends AsyncTask<String,String,String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+
+            if (consumirWS()) {
+                return "ok";
+            } else
+                return "error";
+        }
+
+        private void getoperador(JSONObject car){
+            try {
+
+
+                imgemp=car.getString("imgEmpleado");
+                dbimage();
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Log.e("Car_error",e.getMessage());
+            }
+        }
+        protected void onPostExecute(String result){
+            if(result.equals("ok")){
+                try {
+                    //Se cargara la informacion en todo
+
+                    Log.e("ResultadoEnPostExecute", resultado.toString());
+
+
+
+                    try {
+                        JSONObject o=new JSONObject(resultado.toString());
+                        JSONObject op=new JSONObject(resultado.toString());
+                        getoperador(op);
+
+
+
+                    }
+                    catch(Exception e){
+                        Toast.makeText(context, "" + "!!No hay datos intentelo mas tarde¡¡", Toast.LENGTH_SHORT).show();  // el usuario no tiene ninguna app que pueda abrir pdfs
+
+
+
+                        Log.e("JSONArrayError",e.getMessage());
+                    }
+                } catch (Exception e) {
+
+
+                }
+            }else{
+
+                Log.e("ERROR", "Error al consumir el webService");
+            }
+        }
+
+
+
+
+    }
+
+    public void dbimage(){
+        SQLiteDatabase myDB =
+                openOrCreateDatabase("image", MODE_PRIVATE, null);
+        myDB.execSQL("CREATE TABLE IF NOT EXISTS user (name VARCHAR(100000))"
+        );
+        ContentValues row1 = new ContentValues();
+        row1.put("name", imgemp);
+        myDB.insert("user", null, row1);
+        myDB.close();
+    }
+
 }
 

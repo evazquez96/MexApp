@@ -2,6 +2,9 @@ package logsys.dream.com.mx.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -12,12 +15,15 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         BaseFragment.OnFragmentInteractionListener
 {
     public  static Context sContext;
-
+    ImageView fotos;
     //ver bitacora prueba
     //Button bitaco = (Button) findViewById(R.id.bita);
     //Button mm = (Button) findViewById(R.id.mi_procesos_bitacora);
@@ -58,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         myWebView.loadUrl("http://mexamerik.com/");
 */
         TextView tv = (TextView)headerView.findViewById(R.id.txt_globaluser);
+        fotos=(ImageView)headerView.findViewById(R.id.Fotooperador);
         final FrescoApplication globalVariable = (FrescoApplication) getApplicationContext();
 
         tv.setText(globalVariable.getUsuario().getNombre());
@@ -99,10 +106,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragment = new DreamFragment();
         }
 
-
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.mainFrame, fragment);
         ft.commitNow();
+        mostrarimagen();
+        asignarImagen(imagens);
     }
 
     private Menu menu;
@@ -175,6 +183,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent nav = new Intent(MainActivity.this, MainActivity.class);
         startActivity(nav);
         finish();
+    }
+    String imagens;
+
+    public void mostrarimagen(){
+        try {
+            SQLiteDatabase myDB = openOrCreateDatabase("image", MODE_PRIVATE, null);
+            Cursor myCursor = myDB.rawQuery("select name from user", null);
+            while(myCursor.moveToNext()) {
+                imagens = myCursor.getString(0);
+                myCursor.close();
+                myDB.close();
+
+            }
+        }catch (Exception e){
+
+        }
+
+    }
+
+    public void asignarImagen(String picture) {
+
+        try {
+
+            byte[] imageAsBytes = Base64.decode(picture.getBytes(), Base64.DEFAULT);
+            fotos.setImageBitmap(
+                    BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length)
+            );
+        } catch (Exception e) {
+            Log.e("Error imagen",e.getMessage());
+        }
     }
 
 }
