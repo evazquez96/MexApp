@@ -101,8 +101,9 @@ String fecha,ssolic,sclient,ssshitmen,scpo,sorigen,sdeestino,sdirori,sccarga,sdi
             @Override
             public void onClick(View v) {
 
-                asyncdocuments b = new asyncdocuments();
-                b.execute();
+               Intent cp = new Intent(context,cartaporte.class);
+               startActivity(cp);
+
 
             }
         });
