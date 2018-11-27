@@ -18,6 +18,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.ksoap2.SoapEnvelope;
@@ -45,12 +51,20 @@ public class actual_tmp extends Fragment {
     private static final String accionSoap = "http://tempuri.org/GetViajesActual";
     // Fichero de definicion del servcio web
     private static final String url = "https://app.mexamerik.com/Mexapp_viajes/Viajes.asmx?";
+
     public SoapPrimitive resultado;
+
+    HttpClient httpClient = new DefaultHttpClient();
+    HttpPost post = new HttpPost("5382930/app");
+    String cporte;
+
+
+
     Context context = null;
     ProgressDialog pdialog = null;
     int pru;
 TextView header,solicitud,shitment,cpo,cliente,origin,destino,dir,ocita,dirdest,citdes,estatus;
-ImageView gmap1,gmaps2;
+ImageView gmap1,gmaps2,atach;
 String fecha,ssolic,sclient,ssshitmen,scpo,sorigen,sdeestino,sdirori,sccarga,sdirdesty,scitcar,sconve,inter,olat,olog,dlat,dlog,dinter;
     private static MainActivity mActivity;
     @Override
@@ -67,6 +81,7 @@ String fecha,ssolic,sclient,ssshitmen,scpo,sorigen,sdeestino,sdirori,sccarga,sdi
         mActivity = (MainActivity) getActivity();
         estatus=view.findViewById(R.id.status);
         header=view.findViewById(R.id.tvheader);
+        atach=view.findViewById(R.id.Attach);
         solicitud=view.findViewById(R.id.tvheader1);
         shitment=view.findViewById(R.id.tvshipment1);
         cpo=view.findViewById(R.id.tvcp1);
@@ -81,6 +96,16 @@ String fecha,ssolic,sclient,ssshitmen,scpo,sorigen,sdeestino,sdirori,sccarga,sdi
         gmaps2=view.findViewById(R.id.img_navegar1);
        asyncdocuments b = new asyncdocuments();
         b.execute();
+
+        atach.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                asyncdocuments b = new asyncdocuments();
+                b.execute();
+
+            }
+        });
 
        gmap1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -273,7 +298,65 @@ String format,form2,for3;
 
 
     }
+    String respStr;
+    public boolean consumirWScp() {
+        Boolean bandera=true;
+        HttpClient httpClient = new DefaultHttpClient();
 
+        String id = cpo.getText().toString();
+
+        HttpGet del = new HttpGet("http://tms.logsys.com.mx/tms/api/v2.0/cartaporte/" + id+"/app");
+
+        del.setHeader("content-type", "application/json");
+
+        try {
+            HttpResponse resp = httpClient.execute(del);
+            String respStr = EntityUtils.toString(resp.getEntity());
+
+            JSONObject respJSON = new JSONObject(respStr);
+
+            int idCli = respJSON.getInt("Id");
+            String nombCli = respJSON.getString("Nombre");
+            int telefCli = respJSON.getInt("Telefono");
+
+
+        } catch (Exception ex) {
+            Log.e("ServicioRest", "Error!", ex);
+        }
+        return bandera;
+    }
+
+    private class asyncCp extends AsyncTask<String,String,String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+
+            if (consumirWScp()) {
+                return "ok";
+            } else
+                return "error";
+        }
+
+        protected void onPostExecute(String result){
+
+            if(result.equals("ok")){
+
+
+            }
+            else{
+                Log.e("ERROR", "Error al consumir el webService");
+            }
+        }
+
+
+
+
+    }
 
 
 }

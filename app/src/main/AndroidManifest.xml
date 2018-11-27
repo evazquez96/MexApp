@@ -148,16 +148,13 @@
         </receiver>
 
         <activity android:name=".Documents" />
-
-        <activity android:name=".imagens"></activity>
+        <activity android:name=".imagens" />
         <activity android:name="logsys.dream.com.mx.viajes.Viajes" />
         <activity
             android:name="logsys.dream.com.mx.viajes.ViajesBase"
             android:label="@string/title_activity_viajes_base"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
-
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".cartaporte"></activity>
     </application>
 
 </manifest>
