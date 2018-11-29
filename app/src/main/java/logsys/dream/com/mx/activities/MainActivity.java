@@ -37,6 +37,7 @@ import dream.logsys.com.logsysdream.SecondPlain;
 import dream.logsys.com.logsysdream.ViajeFragment;
 import dream.logsys.com.logsysdream.bitacora2;
 import dream.logsys.com.logsysdream.documentos;
+import dream.logsys.com.logsysdream.wsBitaciora.SPcartaporte;
 import logsys.dream.com.mx.startup.FrescoApplication;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
@@ -53,7 +54,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-        startService(new Intent(this,SecondPlain.class));
+       startService(new Intent(this,SecondPlain.class));
+
+
+        startService(new Intent(this,SPcartaporte.class));
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);

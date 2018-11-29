@@ -35,6 +35,7 @@ ImageView verCP;
     Context context = null;
     ProgressDialog pdialog = null;
     private File pdf2;
+    private File pdf;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,14 +93,17 @@ ImageView verCP;
         del.setHeader("Accept", "*/*");
 
         try {
-            String ruta;
+            String ruta,ruta2;
             HttpResponse resp = httpClient.execute(del);
             byte[]  respStr = EntityUtils.toByteArray(resp.getEntity());
             File folder= new File(Environment.getExternalStorageDirectory().toString(),"Carta porte");
             folder.mkdirs();
             pdf2=new File(folder,ssol+".pdf");
+            pdf=new File(folder,"Respaldo.pdf");
             ruta=pdf2.getPath();
+            ruta2=pdf.getPath();
             escribirArchivo(respStr,ruta);
+            respaldo(respStr,ruta2);
 
 
         } catch (Exception ex) {
@@ -144,6 +148,19 @@ ImageView verCP;
 
     }
     public static boolean escribirArchivo(byte[] fileBytes, String archivoDestino){
+        boolean correcto = false;
+        try {
+            OutputStream out = new FileOutputStream(archivoDestino);
+            out.write(fileBytes);
+            out.close();
+            correcto = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return correcto;
+
+    }
+    public static boolean respaldo(byte[] fileBytes, String archivoDestino){
         boolean correcto = false;
         try {
             OutputStream out = new FileOutputStream(archivoDestino);

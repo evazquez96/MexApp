@@ -34,6 +34,7 @@ import org.ksoap2.transport.HttpTransportSE;
 
 import java.io.File;
 
+import dream.logsys.com.logsysdream.Documents;
 import dream.logsys.com.logsysdream.R;
 import dream.logsys.com.logsysdream.SecondPlain;
 import dream.logsys.com.logsysdream.condiciones;
@@ -84,7 +85,9 @@ public class LoginActivity extends AppCompatActivity {//implements LoaderCallbac
         this.inicializarUI();
         this.intentarLoginAutomatico();
 
+
         globalVariable = (FrescoApplication)getApplicationContext();
+        
     }
 
 
@@ -110,14 +113,7 @@ public class LoginActivity extends AppCompatActivity {//implements LoaderCallbac
             }
         });
     }
-    private void terms(){
 
-         Intent condi= new Intent(LoginActivity.this,condiciones.class);
-         startActivity(condi);
-
-
-
-    }
 
     private void iniciarApp()
     {
@@ -290,7 +286,8 @@ public class LoginActivity extends AppCompatActivity {//implements LoaderCallbac
                 globalVariable.setUsuario(null);
                 ParamsDB dbParams = new ParamsDB(globalVariable.getApplicationContext());
                 dbParams.deleteParam(0);
-                resp();
+            Intent doc= new Intent(LoginActivity.this,Documents.class);
+            startActivity(doc);
             }
         }
 

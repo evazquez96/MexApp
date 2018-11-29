@@ -147,7 +147,9 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".Documents" />
+        <activity android:name=".Documents"
+            android:label="Documentos sin Conexion"
+            />
         <activity android:name=".imagens" />
         <activity android:name="logsys.dream.com.mx.viajes.Viajes" />
         <activity
