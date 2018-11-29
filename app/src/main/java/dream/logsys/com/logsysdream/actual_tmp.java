@@ -65,7 +65,7 @@ public class actual_tmp extends Fragment {
     int pru;
 TextView header,solicitud,shitment,cpo,cliente,origin,destino,dir,ocita,dirdest,citdes,estatus;
 ImageView gmap1,gmaps2,atach;
-String fecha,ssolic,sclient,ssshitmen,scpo,sorigen,sdeestino,sdirori,sccarga,sdirdesty,scitcar,sconve,inter,olat,olog,dlat,dlog,dinter;
+String fecha,ssolic,sclient,ssshitmen,scpo,sorigen,sdeestino,sdirori,sccarga,sdirdesty,scitcar,sconve,inter,olat,olog,dlat,dlog,dinter,ddlat,ddlog,dolat,dolog;
     private static MainActivity mActivity;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -80,6 +80,7 @@ String fecha,ssolic,sclient,ssshitmen,scpo,sorigen,sdeestino,sdirori,sccarga,sdi
         View view=inflater.inflate(R.layout.fragment_actual_tmp, container, false);
         mActivity = (MainActivity) getActivity();
         estatus=view.findViewById(R.id.status);
+        context = view.getContext();
         header=view.findViewById(R.id.tvheader);
         atach=view.findViewById(R.id.Attach);
         solicitud=view.findViewById(R.id.tvheader1);
@@ -101,8 +102,22 @@ String fecha,ssolic,sclient,ssshitmen,scpo,sorigen,sdeestino,sdirori,sccarga,sdi
             @Override
             public void onClick(View v) {
 
-               Intent cp = new Intent(context,cartaporte.class);
-               startActivity(cp);
+                String cporte,ssolicitud;
+
+                cporte=cpo.getText().toString();
+                ssolicitud=ssolic;
+
+try {
+    Intent cp = new Intent(context,cartaporte.class);
+    cp.putExtra("solicitud",ssolicitud);
+    cp.putExtra("cporte",cporte);
+    startActivity(cp);
+}
+catch
+        (Exception e){
+
+}
+
 
 
             }
@@ -120,7 +135,7 @@ String fecha,ssolic,sclient,ssshitmen,scpo,sorigen,sdeestino,sdirori,sccarga,sdi
                 else
                     intermedios="";
                 //String uri = "https://www.google.com/maps/dir/?api=1&origin=" + viaje.getoLatitud() +"," + viaje.getoLongitud() + "&destination=" + viaje.getdLatitud()+ "," + viaje.getdLongitud() + intermedios + "&travelmode=driving&dir_action=navigate";
-                String uri = "https://www.google.com/maps/dir/?api=1&destination=" + olat+ "," + olog + intermedios + "&travelmode=driving&dir_action=navigate";
+                String uri = "https://www.google.com/maps/dir/?api=1&destination=" + dlat+ "," + dlog + intermedios + "&travelmode=driving&dir_action=navigate";
                 Log.d(":::::::::::::::::",uri);
                 Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
                 intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
@@ -141,7 +156,7 @@ String fecha,ssolic,sclient,ssshitmen,scpo,sorigen,sdeestino,sdirori,sccarga,sdi
                else
                    intermedios="";
                //String uri = "https://www.google.com/maps/dir/?api=1&origin=" + viaje.getDoLatitud() +"," + viaje.getDoLongitud() + "&destination=" + viaje.getDdLatitud()+ "," + viaje.getDdLongitud() + intermedios + "&travelmode=driving&dir_action=navigate";
-               String uri = "https://www.google.com/maps/dir/?api=1&destination=" + dlat+ "," + dlog + intermedios + "&travelmode=driving&dir_action=navigate";
+               String uri = "https://www.google.com/maps/dir/?api=1&destination=" + ddlat+ "," + ddlog + intermedios + "&travelmode=driving&dir_action=navigate";
                Log.d(":::::::::::::::::",uri);
                Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
                intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
@@ -227,11 +242,21 @@ String format,form2,for3;
                 sdirdesty=car.getString("DireccionDescarga");
                 scitcar=car.getString("CitaDescarga");
 
+                //ddlat,ddlog,dolat,dolog;
+
+
                 olat=car.getString("O_Latitud");
                 olog=car.getString("O_Longitud");
                 dlat=car.getString("D_Latitud");
                 dlog=car.getString("D_Longitud");
+                inter=car.getString("Intermedios");
+                dolat=car.getString("D_O_Latitud");
+                dolog=car.getString("D_O_Longitud");
+                ddlat=car.getString("D_D_Latitud");
+                ddlog=car.getString("D_D_Longitud");
                 dinter=car.getString("D_Intermedios");
+
+
 
                 long time = Long.parseLong( sccarga.substring(6, sccarga.length() - 2 ));
                 Date date = new Date(time);
@@ -296,65 +321,6 @@ String format,form2,for3;
     }
     public  void mandar(){
         pru = globalVariable.getUsuario().getId();
-
-
-    }
-    String respStr;
-    public boolean consumirWScp() {
-        Boolean bandera=true;
-        HttpClient httpClient = new DefaultHttpClient();
-
-        String id = cpo.getText().toString();
-
-        HttpGet del = new HttpGet("http://tms.logsys.com.mx/tms/api/v2.0/cartaporte/" + id+"/app");
-
-        del.setHeader("content-type", "application/json");
-
-        try {
-            HttpResponse resp = httpClient.execute(del);
-            String respStr = EntityUtils.toString(resp.getEntity());
-
-            JSONObject respJSON = new JSONObject(respStr);
-
-            int idCli = respJSON.getInt("Id");
-            String nombCli = respJSON.getString("Nombre");
-            int telefCli = respJSON.getInt("Telefono");
-
-
-        } catch (Exception ex) {
-            Log.e("ServicioRest", "Error!", ex);
-        }
-        return bandera;
-    }
-
-    private class asyncCp extends AsyncTask<String,String,String> {
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected String doInBackground(String... strings) {
-
-            if (consumirWScp()) {
-                return "ok";
-            } else
-                return "error";
-        }
-
-        protected void onPostExecute(String result){
-
-            if(result.equals("ok")){
-
-
-            }
-            else{
-                Log.e("ERROR", "Error al consumir el webService");
-            }
-        }
-
-
 
 
     }

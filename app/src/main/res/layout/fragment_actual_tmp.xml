@@ -132,7 +132,7 @@
                     android:textSize="12dp" />
                 <ImageView
                     android:id="@+id/Attach"
-                    android:layout_width="30dp"
+                    android:layout_width="28dp"
                     android:layout_height="30dp"
                     android:background="@drawable/ev1"
                     card_view:srcCompat="@drawable/atach" />

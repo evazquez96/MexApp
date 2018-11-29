@@ -154,7 +154,10 @@
             android:name="logsys.dream.com.mx.viajes.ViajesBase"
             android:label="@string/title_activity_viajes_base"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".cartaporte"></activity>
+        <activity android:name=".cartaporte"
+            android:label="Ver Carta Porte">
+
+        </activity>
     </application>
 
 </manifest>

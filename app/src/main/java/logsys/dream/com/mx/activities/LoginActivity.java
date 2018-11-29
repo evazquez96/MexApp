@@ -130,9 +130,10 @@ public class LoginActivity extends AppCompatActivity {//implements LoaderCallbac
         //hardcodeado
 //sim="5551399925";
      //sim="5525647774";ivan
+        sim="5530436756";
         //sim="5551399925";//paola reyes
 // sim = "5530316921";//forlan
-sim = "5555071692";//Pablo sanches Rebolledo
+//sim = "5555071692";//Pablo sanches Rebolledo
 //sim = "5530165296";//mario peña hr
       //  sim = "5521016727";//ruben reyes
 //sim = "4422391223";//Heriberto Rico Hernandez
@@ -440,8 +441,8 @@ sim = "5555071692";//Pablo sanches Rebolledo
     public void dbimage(){
         SQLiteDatabase myDB =
                 openOrCreateDatabase("image", MODE_PRIVATE, null);
-        myDB.execSQL("CREATE TABLE IF NOT EXISTS user (name VARCHAR(100000))"
-        );
+        myDB.execSQL("drop table IF  EXISTS user");
+        myDB.execSQL("CREATE TABLE IF NOT EXISTS user (name VARCHAR(100000))");
         ContentValues row1 = new ContentValues();
         row1.put("name", imgemp);
         myDB.insert("user", null, row1);

@@ -1,18 +1,21 @@
 package logsys.dream.com.mx.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import dream.logsys.com.logsysdream.R;
+import dream.logsys.com.logsysdream.cartaporte;
 import logsys.dream.com.mx.contracts.viaje.to.viajeTO;
 import logsys.dream.com.mx.db.ViajesDB;
 
 public class ConsultaViajeActivity extends AppCompatActivity {
 
-    public ImageView img_navegar;
+    public ImageView img_navegar,atach;
     public TextView tvsolicitud;
     public TextView tvcliente;
     public TextView tvcitacarga;
@@ -36,7 +39,7 @@ public class ConsultaViajeActivity extends AppCompatActivity {
             int viajeId = extras.getInt("id");
             Log.d(":::::::::::::::::","Viaje id: " + viajeId + "");
             ViajesDB db = new ViajesDB(LoginActivity.getAppContext());
-            viajeTO viaje = db.obtenerViaje(viajeId);
+            final viajeTO viaje = db.obtenerViaje(viajeId);
             Log.d("::::::::::::::::::::",viaje.toString());
             this.setTitle("Viaje");
             img_navegar = findViewById(R.id.img_navegar);
@@ -52,7 +55,7 @@ public class ConsultaViajeActivity extends AppCompatActivity {
             tvshipment = findViewById(R.id.tvshipment1);
             tvcliente = findViewById(R.id.tvcliente1);
             Estatus= findViewById(R.id.status);
-
+            atach=(ImageView)findViewById(R.id.Attach);
             tvsolicitud.setText("Solicitud: "+ viaje.getNumeroSolicitud());
             tvcitacarga.setText(viaje.getCitaCarga());
             tvcitadescarga.setText(viaje.getCitaDescarga());
@@ -65,6 +68,32 @@ public class ConsultaViajeActivity extends AppCompatActivity {
             tvshipment.setText(viaje.getShipment());
             tvcliente.setText(viaje.getCliente());
              Estatus.setText(viaje.getEstatus());
+
+            atach.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    String cporte;
+
+                    cporte=viaje.getCp();
+                 int solicitud=viaje.getNumeroSolicitud();
+                 String Ssolicitud=solicitud+"";
+
+                    try {
+                        Intent cp = new Intent(ConsultaViajeActivity.this,cartaporte.class);
+                        cp.putExtra("solicitud",Ssolicitud);
+                        cp.putExtra("cporte",cporte);
+                        startActivity(cp);
+                    }
+                    catch
+                            (Exception e){
+
+                    }
+
+
+
+                }
+            });
         }
     }
 }
