@@ -25,9 +25,10 @@
             android:id="@+id/CPO"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/ev1"
+            android:background="@drawable/ev2"
             android:layout_marginTop="80dp"
             android:layout_marginRight="10dp"
+            android:textSize="20dp"
             android:layout_marginLeft="10dp"
             android:text="Carta porte" />
 
@@ -37,8 +38,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
+            android:textSize="20dp"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/ev1"
+
+            android:background="@drawable/ev2"
             android:text="Norma 87" />
     </LinearLayout>
 

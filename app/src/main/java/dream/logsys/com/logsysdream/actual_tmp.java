@@ -95,8 +95,15 @@ String fecha,ssolic,sclient,ssshitmen,scpo,sorigen,sdeestino,sdirori,sccarga,sdi
         citdes=view.findViewById(R.id.tvcitadescarga1);
         gmap1=view.findViewById(R.id.img_navegar);
         gmaps2=view.findViewById(R.id.img_navegar1);
-       asyncdocuments b = new asyncdocuments();
-        b.execute();
+
+        try {
+            asyncdocuments b = new asyncdocuments();
+            b.execute();
+
+        }catch (Exception e){
+            
+        }
+
 
         atach.setOnClickListener(new View.OnClickListener() {
             @Override

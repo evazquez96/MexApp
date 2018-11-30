@@ -754,14 +754,15 @@ public class bitacora2 extends AppCompatActivity {
           fecha();
           getunidad();
           uni.setText(alia);
+            getoperador();
             pdialog = ProgressDialog.show(context, "", "Cargando Datos por favor espere...", true);
           asyncBitacora b = new asyncBitacora();
           b.execute();
          asyncdocuments c = new asyncdocuments();
             c.execute();
-          getoperador();
+
           operador.setText(globalVariable.getUsuario().getNombre());
-          getviaje();
+
 
 
       }catch (Exception e){
@@ -830,10 +831,7 @@ public class bitacora2 extends AppCompatActivity {
     public void getunidad(){
       alia = globalVariable.getUsuario().getUnidad();
     }
-    public void getviaje(){
 
-
-    }
     private String[]header={"Evento","Ultimas 24:00hrs","Ultimas 5:00hrs"};
     private String sh="TRANSPORTES MEXAMERIK, S.A. DE C.V.";
     private String shl="Calle Mariano Escobedo S/N Colonia: " +"\n"+

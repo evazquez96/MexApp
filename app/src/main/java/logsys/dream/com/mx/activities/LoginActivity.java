@@ -87,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {//implements LoaderCallbac
 
 
         globalVariable = (FrescoApplication)getApplicationContext();
-        
+
     }
 
 
@@ -125,8 +125,9 @@ public class LoginActivity extends AppCompatActivity {//implements LoaderCallbac
 // sim = sim.substring(sim.indexOf('+')+3);       //descomentar esta linea y comentar la linea 95
         //hardcodeado
 //sim="5551399925";
+       sim="5555082466";//jg Aguilar
      //sim="5525647774";ivan
-        sim="5530436756";
+       // sim="5530436756";
         //sim="5551399925";//paola reyes
 // sim = "5530316921";//forlan
 //sim = "5555071692";//Pablo sanches Rebolledo

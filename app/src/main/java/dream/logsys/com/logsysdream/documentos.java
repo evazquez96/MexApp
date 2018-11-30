@@ -139,9 +139,15 @@ public class documentos extends Fragment {
         poliza=view.findViewById(R.id.POLIZASEGURO);
         userName.setText(nombre);
         userUnit.setText(alia);
-        pdialog = ProgressDialog.show(context, "", "Espere un momento...", true);
-        asyncdocuments b = new asyncdocuments();
-        b.execute();
+        try {
+            pdialog = ProgressDialog.show(context, "", "Espere un momento...", true);
+            asyncdocuments b = new asyncdocuments();
+            b.execute();
+
+        }catch (Exception e){
+
+        }
+
 
         tell.setOnClickListener(new View.OnClickListener() {
             @Override

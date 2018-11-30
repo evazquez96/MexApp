@@ -46,12 +46,17 @@ ImageView verCP;
         context=this;
         ssol = getIntent().getStringExtra("solicitud");
         scpo= getIntent().getStringExtra("cporte");
-        pdialog = ProgressDialog.show(context, "", "Espere un momento...", true);
-        asyncCp b = new asyncCp();
-        b.execute();
-        cpo.setText(scpo);
-        sol.setText(ssol);
-        pdialog.dismiss();
+      try {
+          pdialog = ProgressDialog.show(context, "", "Espere un momento...", true);
+          asyncCp b = new asyncCp();
+          b.execute();
+          cpo.setText(scpo);
+          sol.setText(ssol);
+          pdialog.dismiss();
+      }catch (Exception e0){
+
+      }
+
 
        verCP.setOnClickListener(new View.OnClickListener() {
            @Override

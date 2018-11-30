@@ -438,7 +438,7 @@
             android:layout_height="38dp"
             android:layout_gravity="center"
             android:layout_margin="5dp"
-            android:background="@drawable/ev1"
+            android:background="@drawable/ev2"
             android:text="Ver Detalles" />
     </LinearLayout>
         </LinearLayout>
