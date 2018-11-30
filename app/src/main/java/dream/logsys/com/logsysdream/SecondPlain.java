@@ -165,7 +165,7 @@ public class SecondPlain extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        Toast.makeText(this, "Servicio creado!", Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(this, "Servicio creado!", Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -1,11 +1,14 @@
 package logsys.dream.com.mx.activities;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -26,6 +29,24 @@ import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.ksoap2.SoapEnvelope;
+import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapPrimitive;
+import org.ksoap2.serialization.SoapSerializationEnvelope;
+import org.ksoap2.transport.HttpTransportSE;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 
 import dream.logsys.com.logsysdream.BaseFragment;
 import dream.logsys.com.logsysdream.BlankFragment;
@@ -52,27 +73,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
-       startService(new Intent(this,SecondPlain.class));
+        context=this;
+        pdialog = ProgressDialog.show(context, "", "cargando documentos", true);
+      //
 
+       try {
+           asyncdocuments b= new asyncdocuments();
+           b.execute();
+           asyncCp cp= new asyncCp();
+           cp.execute();
+       }catch (Exception e){
 
-        startService(new Intent(this,SPcartaporte.class));
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+       }
+       NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
       /*  WebView myWebView = (WebView) findViewById(R.id.webvew);
         WebSettings webSettings = myWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         myWebView.setWebViewClient(new WebViewClient());
-        myWebView.loadUrl("http://mexamerik.com/");
-*/
+        myWebView.loadUrl("http://mexamerik.com/");*/
         TextView tv = (TextView)headerView.findViewById(R.id.txt_globaluser);
         fotos=(ImageView)headerView.findViewById(R.id.Fotooperador);
         final FrescoApplication globalVariable = (FrescoApplication) getApplicationContext();
-
         tv.setText(globalVariable.getUsuario().getNombre());
-
         tv = (TextView)headerView.findViewById(R.id.txt_globaluser_ma);
         tv.setText(globalVariable.getUsuario().getUnidad());
         //txt_globaluser_ma
@@ -219,6 +243,164 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    
+    // Metodo que queremos ejecutar en el servicio web
+    private static final String Metodo = "GetViajesActual";
+    // Namespace definido en el servicio web
+    private static final String namespace = "http://tempuri.org/";
+    // namespace + metodo
+    private static final String accionSoap = "http://tempuri.org/GetViajesActual";
+    // Fichero de definicion del servcio web
+    private static final String url = "https://app.mexamerik.com/Mexapp_viajes/Viajes.asmx?";
+    protected FrescoApplication globalVariable = (FrescoApplication) LoginActivity.getAppContext();
+    public SoapPrimitive resultado;
+    int pru;
+    Context context = null;
+    ProgressDialog pdialog = null;
+    private File pdf;
+    String fecha,ssolic,sclient,ssshitmen,scpo,sorigen,sdeestino,sdirori,sccarga,sdirdesty,scitcar,sconve,inter,olat,olog,dlat,dlog,dinter,ddlat,ddlog,dolat,dolog;
+    public boolean consumirWS(){
+
+pru=globalVariable.getUsuario().getId();
+
+        Boolean bandera=true;
+        try {
+            String s=new SimpleDateFormat("yyyy/MM/dd").format(new java.util.Date());
+            fecha=s;
+            SoapObject request = new SoapObject(namespace, Metodo);
+            request.addProperty("fecha", fecha);
+            request.addProperty("ID_Usuario", pru);
+            SoapSerializationEnvelope sobre = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+            sobre.dotNet = true;
+            sobre.setOutputSoapObject(request);
+            HttpTransportSE transporte = new HttpTransportSE(url);
+            transporte.call(accionSoap, sobre);
+            resultado= (SoapPrimitive) sobre.getResponse();
+            int ssma=4+4;
+
+        } catch (Exception e) {
+            Log.e("ERROR", e.getMessage());
+            bandera=false;
+        }finally {
+
+            return bandera;
+        }}
+    private class asyncdocuments extends AsyncTask<String,String,String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+
+            if (consumirWS()) {
+                return "ok";
+            } else
+                return "error";
+        }
+
+
+        private void getCar(JSONObject car){
+
+
+            try {
+                ssolic=car.getString("Id");
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Log.e("Car_error",e.getMessage());
+            }
+
+        }
+        protected void onPostExecute(String result){
+            if(result.equals("ok")){
+                String res,res2;
+                try {
+                    int sum=2+2;
+                    res=resultado.toString().replace("[","");
+                    res2=res.replace("]","");
+                    JSONObject o=new JSONObject(res2);
+                    getCar(o);
+                    int sum12=2+2;
+                }
+                catch(Exception e){
+
+                    Log.e("JSONArrayError",e.getMessage());
+                }
+            }
+            else{
+                Log.e("ERROR", "Error al consumir el webService");
+            }
+        }
+
+
+
+
+    }
+    public boolean consumirWScp() {
+        Boolean bandera=true;
+        HttpClient httpClient = new DefaultHttpClient();
+
+        String id = ssolic;
+
+        HttpGet del = new HttpGet("http://tms.logsys.com.mx/tms/api/v2.0/cartaporte/" + id+"/app");
+        del.setHeader("Authorization", "Basic YWRtaW46bTN4NG0zcjFr");
+        del.setHeader("Accept", "*/*");
+
+        try {
+            String ruta2;
+            HttpResponse resp = httpClient.execute(del);
+            byte[]  respStr = EntityUtils.toByteArray(resp.getEntity());
+            File folder= new File(Environment.getExternalStorageDirectory().toString(),"Carta porte");
+            folder.mkdirs();
+            pdf=new File(folder,"Respaldo.pdf");
+            ruta2=pdf.getPath();
+            respaldo(respStr,ruta2);
+
+
+        } catch (Exception ex) {
+            Log.e("ServicioRest", "Error!", ex);
+        }
+        return bandera;
+    }
+
+    private class asyncCp extends AsyncTask<String,String,String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+
+            if (consumirWScp()) {
+                return "ok";
+            } else
+                return "error";
+        }
+
+        protected void onPostExecute(String result){
+
+         }}
+
+    public boolean respaldo(byte[] fileBytes, String archivoDestino){
+        boolean correcto = false;
+        try {
+            OutputStream out = new FileOutputStream(archivoDestino);
+            out.write(fileBytes);
+            out.close();
+            startService(new Intent(context,SecondPlain.class));
+            pdialog.dismiss();
+
+            correcto = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return correcto;
+
+    }
 
 }

@@ -98,17 +98,16 @@ ImageView verCP;
         del.setHeader("Accept", "*/*");
 
         try {
-            String ruta,ruta2;
+            String ruta;
             HttpResponse resp = httpClient.execute(del);
             byte[]  respStr = EntityUtils.toByteArray(resp.getEntity());
             File folder= new File(Environment.getExternalStorageDirectory().toString(),"Carta porte");
             folder.mkdirs();
             pdf2=new File(folder,ssol+".pdf");
-            pdf=new File(folder,"Respaldo.pdf");
             ruta=pdf2.getPath();
-            ruta2=pdf.getPath();
+
             escribirArchivo(respStr,ruta);
-            respaldo(respStr,ruta2);
+
 
 
         } catch (Exception ex) {

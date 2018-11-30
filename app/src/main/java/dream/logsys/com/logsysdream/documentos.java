@@ -256,19 +256,13 @@ try{
         return view;
     }
 
-    public  void mandar(){
-        pru = globalVariable.getUsuario().getId();
-        alia= globalVariable.getUsuario().getUnidad();
 
-    }
 
     public boolean consumirWS(){
         Boolean bandera=true;
         try {
 
-            //mandar();
-/*alia="MA1654";
-pru=100136;*/
+
             alia=globalVariable.getUsuario().getUnidad();
             pru=globalVariable.getUsuario().getId();
             SoapObject request = new SoapObject(namespace, Metodo);
@@ -397,9 +391,14 @@ int a=4+4;
                 }else if(ant<360){
                     tiempo.setText(antuguedad+" dias");
                 }
+                try {
+                    imgpoliza=car.getString("imgpoliza");
+                    imgcurp=car.getString("imgcurp");
+                }catch (Exception e){
 
-                imgpoliza=car.getString("imgpoliza");
-                imgcurp=car.getString("imgcurp");
+                }
+
+
 
 
             } catch (JSONException e) {
