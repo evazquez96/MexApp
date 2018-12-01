@@ -76,17 +76,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         context=this;
         pdialog = ProgressDialog.show(context, "", "cargando documentos", true);
-      //
-
-       try {
-           asyncdocuments b= new asyncdocuments();
-           b.execute();
-           asyncCp cp= new asyncCp();
-           cp.execute();
-       }catch (Exception e){
-
-       }
-       NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
       /*  WebView myWebView = (WebView) findViewById(R.id.webvew);
         WebSettings webSettings = myWebView.getSettings();
@@ -139,6 +129,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ft.commitNow();
         mostrarimagen();
         asignarImagen(imagens);
+        try {
+            asyncdocuments b= new asyncdocuments();
+            b.execute();
+        }catch (Exception e){
+
+        }
     }
 
     private Menu menu;
@@ -208,9 +204,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-        Intent nav = new Intent(MainActivity.this, MainActivity.class);
-        startActivity(nav);
-        finish();
+
     }
     String imagens;
 
@@ -324,6 +318,14 @@ pru=globalVariable.getUsuario().getId();
                     JSONObject o=new JSONObject(res2);
                     getCar(o);
                     int sum12=2+2;
+                    try {
+                        asyncdocuments b= new asyncdocuments();
+                        b.execute();
+                        asyncCp cp= new asyncCp();
+                        cp.execute();
+                    }catch (Exception e){
+
+                    }
                 }
                 catch(Exception e){
 
@@ -394,7 +396,6 @@ pru=globalVariable.getUsuario().getId();
             out.close();
             startService(new Intent(context,SecondPlain.class));
             pdialog.dismiss();
-
             correcto = true;
         } catch (Exception e) {
             e.printStackTrace();
