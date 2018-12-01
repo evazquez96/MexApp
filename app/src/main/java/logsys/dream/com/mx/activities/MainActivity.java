@@ -76,6 +76,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         context=this;
         pdialog = ProgressDialog.show(context, "", "cargando documentos", true);
+        try {
+            asyncdocuments b= new asyncdocuments();
+            b.execute();
+        }catch (Exception e){
+
+        }
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
       /*  WebView myWebView = (WebView) findViewById(R.id.webvew);
@@ -129,12 +135,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ft.commitNow();
         mostrarimagen();
         asignarImagen(imagens);
-        try {
-            asyncdocuments b= new asyncdocuments();
-            b.execute();
-        }catch (Exception e){
-
-        }
     }
 
     private Menu menu;
@@ -204,6 +204,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
+Intent nuw = new Intent(MainActivity.this,MainActivity.class);
+startActivity(nuw);
+finish();
 
     }
     String imagens;
@@ -312,28 +315,27 @@ pru=globalVariable.getUsuario().getId();
             if(result.equals("ok")){
                 String res,res2;
                 try {
-                    int sum=2+2;
+
                     res=resultado.toString().replace("[","");
                     res2=res.replace("]","");
                     JSONObject o=new JSONObject(res2);
                     getCar(o);
                     int sum12=2+2;
-                    try {
-                        asyncdocuments b= new asyncdocuments();
-                        b.execute();
-                        asyncCp cp= new asyncCp();
-                        cp.execute();
-                    }catch (Exception e){
+                    asyncCp cp = new asyncCp();
+                    cp.execute();
 
-                    }
                 }
                 catch(Exception e){
 
                     Log.e("JSONArrayError",e.getMessage());
+                    pdialog.dismiss();
+
                 }
             }
             else{
                 Log.e("ERROR", "Error al consumir el webService");
+                pdialog.dismiss();
+
             }
         }
 
@@ -385,6 +387,16 @@ pru=globalVariable.getUsuario().getId();
         }
 
         protected void onPostExecute(String result){
+            pdialog.dismiss();
+            if(result.equals("ok")){
+                pdialog.dismiss();
+
+            }
+            else{
+                pdialog.dismiss();
+                Log.e("ERROR", "Error al consumir el webService");
+            }
+            pdialog.dismiss();
 
          }}
 
@@ -395,7 +407,6 @@ pru=globalVariable.getUsuario().getId();
             out.write(fileBytes);
             out.close();
             startService(new Intent(context,SecondPlain.class));
-            pdialog.dismiss();
             correcto = true;
         } catch (Exception e) {
             e.printStackTrace();

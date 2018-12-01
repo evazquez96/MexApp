@@ -54,9 +54,7 @@ public class actual_tmp extends Fragment {
 
     public SoapPrimitive resultado;
 
-    HttpClient httpClient = new DefaultHttpClient();
-    HttpPost post = new HttpPost("5382930/app");
-    String cporte;
+
 
 
 

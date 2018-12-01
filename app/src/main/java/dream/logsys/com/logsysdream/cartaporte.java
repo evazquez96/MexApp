@@ -46,25 +46,20 @@ ImageView verCP;
         context=this;
         ssol = getIntent().getStringExtra("solicitud");
         scpo= getIntent().getStringExtra("cporte");
-      try {
-          pdialog = ProgressDialog.show(context, "", "Espere un momento...", true);
-          asyncCp b = new asyncCp();
-          b.execute();
-          cpo.setText(scpo);
-          sol.setText(ssol);
-          pdialog.dismiss();
-      }catch (Exception e0){
-
-      }
+        pdialog = ProgressDialog.show(context, "", "Espere un momento...", true);
+        asyncCp b = new asyncCp();
+        b.execute();
+        cpo.setText(scpo);
+        sol.setText(ssol);
 
 
-       verCP.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               resp();
+        verCP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resp();
 
-           }
-       });
+            }
+        });
 
     }
 
@@ -105,9 +100,7 @@ ImageView verCP;
             folder.mkdirs();
             pdf2=new File(folder,ssol+".pdf");
             ruta=pdf2.getPath();
-
             escribirArchivo(respStr,ruta);
-
 
 
         } catch (Exception ex) {
@@ -164,18 +157,4 @@ ImageView verCP;
         return correcto;
 
     }
-    public static boolean respaldo(byte[] fileBytes, String archivoDestino){
-        boolean correcto = false;
-        try {
-            OutputStream out = new FileOutputStream(archivoDestino);
-            out.write(fileBytes);
-            out.close();
-            correcto = true;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return correcto;
-
-    }
-
 }
