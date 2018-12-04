@@ -201,11 +201,6 @@ try{
             @Override
             public void onClick(View v) {
                 try{
-
-
-                  //  Toast.makeText(context, usus, Toast.LENGTH_SHORT).show();  // el usuario no tiene ninguna app que pueda abrir pdfs
-
-
                     Uri uri = Uri.parse(imgsua.replace(" ",""));
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                     startActivity(intent);
@@ -256,28 +251,16 @@ try{
         return view;
     }
 
-
-
-    public boolean consumirWS(){
+ public boolean consumirWS(){
         Boolean bandera=true;
-        try {
-
-
-            alia=globalVariable.getUsuario().getUnidad();
+        try { alia=globalVariable.getUsuario().getUnidad();
             pru=globalVariable.getUsuario().getId();
             SoapObject request = new SoapObject(namespace, Metodo);
             request.addProperty("aliasUnidad", alia);
             request.addProperty("id_tms", pru);
-
-
-            // Modelo el Sobre
             SoapSerializationEnvelope sobre = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-
             sobre.dotNet = true;
-
             sobre.setOutputSoapObject(request);
-
-            // Modelo el transporte
             HttpTransportSE transporte = new HttpTransportSE(url);
 
             // Llamada

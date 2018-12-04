@@ -93,8 +93,6 @@ public class bitacora2 extends AppCompatActivity {
     public boolean consumirWS(){
         Boolean bandera=true;
         try {
-
-            // Modelo el request
             getoperador();
             getunidad();
             Viajes v = new Viajes();
@@ -102,35 +100,26 @@ public class bitacora2 extends AppCompatActivity {
             request.addProperty("user_id", pru);
             //request.addProperty("user_id", 100107);
             String s=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new java.util.Date());
-            //String fechaPrueba="2018/07/31 23:56:56";
-            //Log.e("fecha",fechaPrueba);
+
             request.addProperty("alias_unidad", alia);
 
             request.addProperty("solicitud",v.getSolicitud());
 
             request.addProperty("date", s);
-            //request.addProperty("date", fechaPrueba);
-            //this.fecha=fechaPrueba; //A la variable de clase fecha se le asigna la fecha en la que se consumio el servicio.
-            this.fecha=s;
-            //request.addProperty("user_id", 2); // Paso parametros al WS
 
-            // Modelo el Sobre
+            this.fecha=s;
+
             SoapSerializationEnvelope sobre = new SoapSerializationEnvelope(SoapEnvelope.VER11);
 
             sobre.dotNet = true;
 
             sobre.setOutputSoapObject(request);
 
-            // Modelo el transporte
             HttpTransportSE transporte = new HttpTransportSE(url);
 
-            // Llamada
             transporte.call(accionSoap, sobre);
 
-            // Resultado
             resultado= (SoapPrimitive) sobre.getResponse();
-
-
 
         } catch (Exception e) {
             Log.e("ERROR", e.getMessage());
@@ -138,10 +127,6 @@ public class bitacora2 extends AppCompatActivity {
         }finally {
 
             return bandera;
-            /*
-              * El finally siempre se va a ejecutar, sin importar que se lanze
-             * una exepction
-             */
         }
 
     }
@@ -210,9 +195,7 @@ public class bitacora2 extends AppCompatActivity {
             //Obtiene la fecha fin del ultimo evento
 
             Dream nuevo;
-            /**
-             * Se obtiene el primer y utlimo evento registrado.
-             */
+
             Date firstFechaInicio=null;
             Date lastFechaFin=null;
             try {
@@ -221,9 +204,6 @@ public class bitacora2 extends AppCompatActivity {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-
-            //=new Date(first.getFecha_inicio());
-            // =new Date(last.getFecha_fin());
             Date dateActual=new Date(fecha);
             Date menos24=restarHoras(dateActual,-24);
 

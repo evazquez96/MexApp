@@ -267,18 +267,20 @@ pru=globalVariable.getUsuario().getId();
 
         Boolean bandera=true;
         try {
+            String version =BuildConfig.VERSION_NAME;
             String s=new SimpleDateFormat("yyyy/MM/dd").format(new java.util.Date());
             fecha=s;
             SoapObject request = new SoapObject(namespace, Metodo);
             request.addProperty("fecha", fecha);
             request.addProperty("ID_Usuario", pru);
+            request.addProperty("Version", version);
             SoapSerializationEnvelope sobre = new SoapSerializationEnvelope(SoapEnvelope.VER11);
             sobre.dotNet = true;
             sobre.setOutputSoapObject(request);
             HttpTransportSE transporte = new HttpTransportSE(url);
             transporte.call(accionSoap, sobre);
             resultado= (SoapPrimitive) sobre.getResponse();
-            int ssma=4+4;
+
 
         } catch (Exception e) {
             Log.e("ERROR", e.getMessage());
