@@ -1,9 +1,11 @@
 package dream.logsys.com.logsysdream;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.view.View;
+import android.widget.TextView;
 
 
 /**
@@ -68,13 +70,20 @@ public class InicioFragment extends BaseFragment {
     }
 
     static TabLayout tabLayout;
-
+    Context context = null;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        String ver;
+        ver=BuildConfig.VERSION_NAME;
+        TextView version;
+
 
         View _view = getActivity().findViewById(R.id.drawer_layout);
+         version=_view.findViewById(R.id.version);
+         version.setText(ver);
+        context = view.getContext();
         tabLayout = _view.findViewById(R.id.tabs);
         tabLayout.setVisibility(View.GONE);
     }

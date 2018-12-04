@@ -2,7 +2,7 @@
 
     <string name="app_name">MexApp</string>
     <string name="login_name">MexApp</string>
-
+<string name="version_name">App_5.0.67</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Usuario</string>
     <string name="prompt_password">Contraseña</string>

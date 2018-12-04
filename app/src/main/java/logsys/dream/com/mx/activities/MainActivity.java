@@ -50,6 +50,7 @@ import java.text.SimpleDateFormat;
 
 import dream.logsys.com.logsysdream.BaseFragment;
 import dream.logsys.com.logsysdream.BlankFragment;
+import dream.logsys.com.logsysdream.BuildConfig;
 import dream.logsys.com.logsysdream.DreamFragment;
 import dream.logsys.com.logsysdream.InicioFragment;
 import dream.logsys.com.logsysdream.NotificacionFragment;
@@ -66,6 +67,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 {
     public  static Context sContext;
     ImageView fotos;
+    String ver;
+
     //ver bitacora prueba
     //Button bitaco = (Button) findViewById(R.id.bita);
     //Button mm = (Button) findViewById(R.id.mi_procesos_bitacora);
@@ -84,17 +87,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
-      /*  WebView myWebView = (WebView) findViewById(R.id.webvew);
+       WebView myWebView = (WebView) findViewById(R.id.webvew);
         WebSettings webSettings = myWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         myWebView.setWebViewClient(new WebViewClient());
-        myWebView.loadUrl("http://mexamerik.com/");*/
+        myWebView.loadUrl("https://sites.google.com/logsys.com.mx/mexapp-avisos");
         TextView tv = (TextView)headerView.findViewById(R.id.txt_globaluser);
         fotos=(ImageView)headerView.findViewById(R.id.Fotooperador);
         final FrescoApplication globalVariable = (FrescoApplication) getApplicationContext();
+        TextView versio=(TextView)headerView.findViewById(R.id.version);
         tv.setText(globalVariable.getUsuario().getNombre());
         tv = (TextView)headerView.findViewById(R.id.txt_globaluser_ma);
         tv.setText(globalVariable.getUsuario().getUnidad());
+        ver=BuildConfig.VERSION_NAME;
+        versio.setText(ver);
         //txt_globaluser_ma
 
 
@@ -117,9 +123,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return;
 
 
-      BaseFragment fragment = new InicioFragment();
+    // BaseFragment fragment = new InicioFragment();
 
-        Intent intent = getIntent();
+ /*       Intent intent = getIntent();
 
         if(intent!=null && intent.getExtras()!=null)
         {
@@ -128,11 +134,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragment = new ViajeFragment();
             else if(fragmentId==2)
                 fragment = new DreamFragment();
-        }
+        }*/
 
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+      /*  FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.mainFrame, fragment);
-        ft.commitNow();
+        ft.commitNow();*/
         mostrarimagen();
         asignarImagen(imagens);
     }

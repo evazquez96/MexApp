@@ -14,11 +14,8 @@ public class Viajes_Ws extends Ws_Utils {
         JSONObject o = new JSONObject();
         String result = null;
         Gson gson = null;
-
         result = Get("Notificaciones/Notificaciones.svc/obtenerViajesUnidad?imei=" + globalVariable.getUsuario().getImei());
-
         gson = new GsonHelper().getGson();
-
         return gson.fromJson(result.toString(), viajeTO[].class);
 
     }

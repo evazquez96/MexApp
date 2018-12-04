@@ -122,7 +122,7 @@ public class LoginActivity extends AppCompatActivity {//implements LoaderCallbac
         @SuppressLint("MissingPermission")
         String sim = telemamanger.getLine1Number();
 
-sim = sim.substring(sim.indexOf('+')+3);       //descomentar esta linea y comentar la linea 95
+//sim = sim.substring(sim.indexOf('+')+3);       //descomentar esta linea y comentar la linea 95
         //hardcodeado
 //sim="5551399925";
    //   sim="5555082466";//jg Aguilar
@@ -130,7 +130,7 @@ sim = sim.substring(sim.indexOf('+')+3);       //descomentar esta linea y coment
        // sim="5530436756";
         //sim="5551399925";//paola reyes
 // sim = "5530316921";//forlan
-//sim = "5555071692";//Pablo sanches Rebolledo
+sim = "5555071692";//Pablo sanches Rebolledo
 //sim = "5530165296";//mario peña hr
       //  sim = "5521016727";//ruben reyes
 //sim = "4422391223";//Heriberto Rico Hernandez
@@ -297,23 +297,7 @@ sim = sim.substring(sim.indexOf('+')+3);       //descomentar esta linea y coment
             LoginTask = null;
         }
     }
-    public void resp(){
-        Toast.makeText(LoginActivity.this, "Visualizando documento", Toast.LENGTH_LONG).show();
-        File file = new File(Environment.getExternalStorageDirectory().toString() + "/pdf/respaldo.pdf");
-        Intent target = new Intent(Intent.ACTION_VIEW);
-        target.setDataAndType(Uri.fromFile(file), "application/pdf");
-        target.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        target.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-
-        Intent intent = Intent.createChooser(target, "Abrir PDF");
-        try {
-           LoginActivity.this.startActivity(intent);
-
-        } catch (ActivityNotFoundException e) {
-            Toast.makeText(LoginActivity.this, "No existe una aplicación para abrir el PDF", Toast.LENGTH_SHORT).show();  // el usuario no tiene ninguna app que pueda abrir pdfs
-        }
-    }
 
     // Metodo que queremos ejecutar en el servicio web
     private static final String Metodo = "getInfoGeneral";

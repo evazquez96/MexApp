@@ -143,7 +143,9 @@ public class viajeTO {
     private String estatus;
 
     public  viajeTO()
-    {}
+    {
+
+    }
 
     public viajeTO(int id, String cp, String citaCarga, String citaDescarga, String cliente, String convenio, String destino, String direccionCarga, String direccionDescarga, int numeroSolicitud, String origen, String shipment,String estatus) {
         this.id = id;
