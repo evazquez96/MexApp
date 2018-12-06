@@ -69,7 +69,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 {
     public  static Context sContext;
     ImageView fotos;
-    String ver;
+    String ver,validar;
+    TextView val;
 
     //ver bitacora prueba
     //Button bitaco = (Button) findViewById(R.id.bita);
@@ -87,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }catch (Exception e){
 
         }
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
        WebView myWebView = (WebView) findViewById(R.id.webvew);
@@ -98,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fotos=(ImageView)headerView.findViewById(R.id.Fotooperador);
         final FrescoApplication globalVariable = (FrescoApplication) getApplicationContext();
         TextView versio=(TextView)headerView.findViewById(R.id.version);
+        versio=(TextView)headerView.findViewById(R.id.version);
         tv.setText(globalVariable.getUsuario().getNombre());
         tv = (TextView)headerView.findViewById(R.id.txt_globaluser_ma);
         tv.setText(globalVariable.getUsuario().getUnidad());
@@ -143,6 +146,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ft.commitNow();*/
         mostrarimagen();
         asignarImagen(imagens);
+
+     versio.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
+
+
+         }
+     });
+    }
+    public void validarversion(){
+        if (validar.equals("true")){
+          val.setText("Actualizada");
+        }
+        else if (validar.equals("false")){
+            val.setText("actualizar");
+        }
     }
 
     private Menu menu;
@@ -225,9 +244,11 @@ finish();
     String imagens;
 
     public void mostrarimagen(){
+        int usid;
+        usid=globalVariable.getUsuario().getId();
         try {
             SQLiteDatabase myDB = openOrCreateDatabase("image", MODE_PRIVATE, null);
-            Cursor myCursor = myDB.rawQuery("select name from user", null);
+            Cursor myCursor = myDB.rawQuery("select name from user where ido= usid", null);
             while(myCursor.moveToNext()) {
                 imagens = myCursor.getString(0);
                 myCursor.close();
@@ -324,7 +345,7 @@ pru=globalVariable.getUsuario().getId();
 
             try {
                 ssolic=car.getString("Id");
-
+               validar=car.getString("Version");
 
             } catch (JSONException e) {
                 e.printStackTrace();

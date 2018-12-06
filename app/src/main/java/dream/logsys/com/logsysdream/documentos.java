@@ -277,10 +277,7 @@ int a=4+4;
         }finally {
 
             return bandera;
-            /*
-             * El finally siempre se va a ejecutar, sin importar que se lanze
-             * una exepction
-             */
+
         }
 
     }
