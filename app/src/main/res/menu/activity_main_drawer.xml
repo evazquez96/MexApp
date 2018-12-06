@@ -36,6 +36,13 @@
                 android:icon="@drawable/documents"
                 android:title="Informacion General" />
 
+            <item
+                android:id="@+id/reset"
+                android:icon="@drawable/restat"
+                android:title="reiniciar" />
+
+
+
         </menu>
     </item>
 

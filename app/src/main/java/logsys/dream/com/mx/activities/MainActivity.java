@@ -3,12 +3,14 @@ package logsys.dream.com.mx.activities;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -188,6 +190,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         else if(id==R.id.doc) {
             fragment = new documentos();
             menuItem.setIcon(R.drawable.lobit);
+        }
+        else if(id==R.id.reset) {
+
+            PreferenceManager.getDefaultSharedPreferences(context).edit().clear().apply();
+
+            Intent res= new Intent(MainActivity.this,LoginActivity.class);
+            startActivity(res);
+            finish();
+
         }
         if (fragment != null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
