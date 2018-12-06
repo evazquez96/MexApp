@@ -193,11 +193,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         else if(id==R.id.reset) {
 
-            PreferenceManager.getDefaultSharedPreferences(context).edit().clear().apply();
-
-            Intent res= new Intent(MainActivity.this,LoginActivity.class);
-            startActivity(res);
-            finish();
+            deleteAppData();
 
         }
         if (fragment != null) {
@@ -256,7 +252,13 @@ finish();
             Log.e("Error imagen",e.getMessage());
         }
     }
-
+    private void deleteAppData() {
+        try {  String packageName = getApplicationContext().getPackageName();
+            Runtime runtime = Runtime.getRuntime();
+            runtime.exec("pm clear "+packageName);
+        } catch (Exception e) { e.printStackTrace();
+        }
+    }
     // Metodo que queremos ejecutar en el servicio web
     private static final String Metodo = "GetViajesActual";
     // Namespace definido en el servicio web
