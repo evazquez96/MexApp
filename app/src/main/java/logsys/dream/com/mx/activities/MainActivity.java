@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -82,13 +84,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         context=this;
         pdialog = ProgressDialog.show(context, "", "cargando documentos", true);
-        try {
-            asyncdocuments b= new asyncdocuments();
-            b.execute();
-        }catch (Exception e){
-
-        }
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
        WebView myWebView = (WebView) findViewById(R.id.webvew);
@@ -100,12 +95,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fotos=(ImageView)headerView.findViewById(R.id.Fotooperador);
         final FrescoApplication globalVariable = (FrescoApplication) getApplicationContext();
         TextView versio=(TextView)headerView.findViewById(R.id.version);
-        versio=(TextView)headerView.findViewById(R.id.version);
+        val=(TextView)headerView.findViewById(R.id.validar);
         tv.setText(globalVariable.getUsuario().getNombre());
         tv = (TextView)headerView.findViewById(R.id.txt_globaluser_ma);
         tv.setText(globalVariable.getUsuario().getUnidad());
         ver=BuildConfig.VERSION_NAME;
         versio.setText(ver);
+        try {
+            asyncdocuments b= new asyncdocuments();
+            b.execute();
+        }catch (Exception e){
+
+        }
+
+
         //txt_globaluser_ma
 
 
@@ -147,21 +150,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mostrarimagen();
         asignarImagen(imagens);
 
-     versio.setOnClickListener(new View.OnClickListener() {
+
+     val.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View v) {
+
+             if(validar.equals("1")){
+
+             }else if(validar.equals("0")){
+                 try {
+                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + BuildConfig.APPLICATION_ID)));
+                 } catch (android.content.ActivityNotFoundException anfe) {
+                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID)));
+                 }
+             }
+
 
 
          }
      });
     }
     public void validarversion(){
-        if (validar.equals("true")){
-          val.setText("Actualizada");
-        }
-        else if (validar.equals("false")){
-            val.setText("actualizar");
-        }
+        String hla,prueba;
+
+
+      hla=validar;
+      prueba=ssolic;
+      int c= 4+4;
     }
 
     private Menu menu;
@@ -244,11 +259,10 @@ finish();
     String imagens;
 
     public void mostrarimagen(){
-        int usid;
-        usid=globalVariable.getUsuario().getId();
+
         try {
             SQLiteDatabase myDB = openOrCreateDatabase("image", MODE_PRIVATE, null);
-            Cursor myCursor = myDB.rawQuery("select name from user where ido= usid", null);
+            Cursor myCursor = myDB.rawQuery("select name from user ", null);
             while(myCursor.moveToNext()) {
                 imagens = myCursor.getString(0);
                 myCursor.close();
@@ -346,6 +360,18 @@ pru=globalVariable.getUsuario().getId();
             try {
                 ssolic=car.getString("Id");
                validar=car.getString("Version");
+try {
+    if(validar.equals("1")){
+        val.setText("Actualizada ");
+    }else if(validar.equals("0")){
+        val.setTextColor(Color.parseColor("#cc9900"));
+        val.setText("No Actualizada");
+    }
+}catch (Exception e){
+    val.setText("Actualizada ");
+}
+
+
 
             } catch (JSONException e) {
                 e.printStackTrace();

@@ -129,8 +129,8 @@ public class LoginActivity extends AppCompatActivity {//implements LoaderCallbac
      //sim="5525647774";ivan
        // sim="5530436756";
         //sim="5551399925";//paola reyes
-// sim = "5530316921";//forlan
-sim = "5530165296";//Pablo sanches Rebolledo
+sim = "5525647774";//forlan
+//sim = "5530165296";//
 //sim = "5530165296";//mario peña hr
       //  sim = "5521016727";//ruben reyes
 //sim = "4422391223";//Heriberto Rico Hernandez
@@ -139,8 +139,7 @@ sim = "5530165296";//Pablo sanches Rebolledo
         Log.d("LoginActivity","::::::::::::::::::::::::::::: #teléfono" + sim);
         LoginTask = new UserLoginAutomaticoTask(sim);
         LoginTask.execute((Void) null);
-        asyncdocuments b = new asyncdocuments();
-        b.execute();
+
 
     }
 
@@ -280,7 +279,8 @@ sim = "5530165296";//Pablo sanches Rebolledo
                 RepViajes rep = new RepViajes();
                 rep.inicializarRegistros();
 
-
+                asyncdocuments b = new asyncdocuments();
+                b.execute();
                 startMain();
             } else {
                 Toast.makeText(LoginActivity.this, resultado, Toast.LENGTH_LONG).show();
