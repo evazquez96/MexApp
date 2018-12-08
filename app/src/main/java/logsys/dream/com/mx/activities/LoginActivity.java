@@ -421,12 +421,13 @@ sim = "5525647774";//forlan
     }
 
     public void dbimage(){
-        SQLiteDatabase myDB =
-                openOrCreateDatabase("image", MODE_PRIVATE, null);
+        int us=globalVariable.getUsuario().getId();
+        SQLiteDatabase myDB = openOrCreateDatabase("image", MODE_PRIVATE, null);
         myDB.execSQL("drop table IF  EXISTS user");
-        myDB.execSQL("CREATE TABLE IF NOT EXISTS user (name VARCHAR(100000))");
+        myDB.execSQL("CREATE TABLE IF NOT EXISTS user (name VARCHAR(100000),iduser int)");
         ContentValues row1 = new ContentValues();
         row1.put("name", imgemp);
+        row1.put("iduser", us);
         myDB.insert("user", null, row1);
         myDB.close();
     }

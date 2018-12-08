@@ -155,9 +155,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
          @Override
          public void onClick(View v) {
 
-             if(validar.equals("1")){
+             if(val.equals("Actualizada")){
 
-             }else if(validar.equals("0")){
+             }else if(val.equals("No Actualizada")){
                  try {
                      startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + BuildConfig.APPLICATION_ID)));
                  } catch (android.content.ActivityNotFoundException anfe) {
@@ -259,10 +259,12 @@ finish();
     String imagens;
 
     public void mostrarimagen(){
+        int us=globalVariable.getUsuario().getId();
 
         try {
             SQLiteDatabase myDB = openOrCreateDatabase("image", MODE_PRIVATE, null);
             Cursor myCursor = myDB.rawQuery("select name from user ", null);
+            int s=1+1;
             while(myCursor.moveToNext()) {
                 imagens = myCursor.getString(0);
                 myCursor.close();
@@ -270,6 +272,7 @@ finish();
 
             }
         }catch (Exception e){
+            Log.e("Error imagen",e.getMessage());
 
         }
 
